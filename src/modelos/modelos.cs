@@ -31,6 +31,7 @@ public class modelos
     {
         public int idCliente { get; set; } =0;
 
+        public Cliente(){}
         public Cliente(int idCliente,string nombre, string apellido, string dni, string telefono, string direccion)
         {
             this.idCliente=idCliente;
