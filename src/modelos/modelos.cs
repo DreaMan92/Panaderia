@@ -46,12 +46,20 @@ public class modelos
     public class Pedido
     {
         public int idPedido { get; set; }
-        public string fecha { get; set; }
+        public DateTime fecha { get; set; }
         public List<Pan> listaDePan { get; set; } 
         public double precioPedido { get; set; }
+        public string dniCliente { get; set; }
 
-        public Pedido(int idPedido, string fecha, List<Pan> listaDePan, double precio)
+        public Pedido(int idPedido, string dniCliente, List<Pan> listaDePan,DateTime fecha, double precio)
         {this.idPedido=idPedido;
+        this.fecha = fecha;
+        this.listaDePan=listaDePan;
+        this.precioPedido=precio;
+        this.dniCliente=dniCliente;
+        }
+        public Pedido(int idPedido, string fecha, List<Pan> listaDePan, double precio)
+        {
         }
     }
 
@@ -78,16 +86,6 @@ public class modelos
         }
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

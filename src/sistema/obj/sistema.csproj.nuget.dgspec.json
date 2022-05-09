@@ -1,25 +1,85 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Otros ordenadores\\Mi PC\\programacion\\entornos\\Panaderia\\src\\sistema\\sistema.csproj": {}
+    "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj": {}
   },
   "projects": {
-    "G:\\Otros ordenadores\\Mi PC\\programacion\\entornos\\Panaderia\\src\\sistema\\sistema.csproj": {
+    "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Otros ordenadores\\Mi PC\\programacion\\entornos\\Panaderia\\src\\sistema\\sistema.csproj",
-        "projectName": "sistema",
-        "projectPath": "G:\\Otros ordenadores\\Mi PC\\programacion\\entornos\\Panaderia\\src\\sistema\\sistema.csproj",
+        "projectUniqueName": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
+        "projectName": "datos",
+        "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
         "packagesPath": "C:\\Users\\guly_\\.nuget\\packages\\",
-        "outputPath": "G:\\Otros ordenadores\\Mi PC\\programacion\\entornos\\Panaderia\\src\\sistema\\obj\\",
+        "outputPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+                "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
+        "projectName": "modelos",
+        "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
+        "packagesPath": "C:\\Users\\guly_\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +112,68 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
+        "projectName": "sistema",
+        "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
+        "packagesPath": "C:\\Users\\guly_\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
+                "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj"
+              },
+              "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+                "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

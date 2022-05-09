@@ -1,5 +1,5 @@
 ﻿namespace sistema;
-public class Class1
+public class Gestor
 {
 
 }
