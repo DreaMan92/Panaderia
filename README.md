@@ -34,11 +34,28 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
 <br>
 <br>
 
+# Problemas
++ Decidir como crear mi pedidos, a psear de tener un lista de panes que forman para de lo atributos del objeto pedio, ovy a tratar las lista de panes con un fichero aparte. Usando un 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # Diario
 + ### 2 horas
     > Organización de modelos
     > Implementación de modelos.
 + ### 2 horas y media 
-   > Estructuración del codigo
-   > Desarrollo de casos de uso
-   > Inicio de controlador y gestor csv
+    > Estructuración del codigo
+    > Desarrollo de casos de uso
+    > Inicio de controlador y gestor csv
++ ### 2 horas
+    > Resolviendo problemas
+    > empezando gestor

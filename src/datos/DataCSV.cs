@@ -1,6 +1,8 @@
 
 using modelos;
-using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace datos
 {
@@ -13,7 +15,7 @@ namespace datos
             List<string> data = new(){ };
             misClientes.ForEach(Cliente =>
             {
-                var str =$"{Cliente.idCliente},{Cliente.nombre},{Cliente.apellido},{Cliente.dni},{Cliente.direccion}";
+                var str =$"{Cliente.nombre},{Cliente.apellido},{Cliente.dni},{Cliente.telefono},{Cliente.direccion}";
                 data.Add(str);
             });
             File.WriteAllLines(_fileClientes, data);
@@ -28,16 +30,12 @@ namespace datos
                 {
                     var campos = row.Split(",");
                     Cliente cliente = new Cliente
-                    (
-
-                        IDCliente : campos[0],
-
-                     
-
-                        Nombre : campos[1],
-                        Apellido : campos[2],
-                        DNI : campos[3],
-                        Direccion : campos[4]
+                    (               
+                        nombre : campos[1],
+                        apellido : campos[2],
+                        dni : campos[3],
+                        telefono : campos[4],
+                        direccion : campos[5]
                     );
                     misClientes.Add(cliente);
                 });
@@ -45,7 +43,6 @@ namespace datos
                 return misClientes;
             
         }
-
 
     }
     public class PedidosCSV : IData<Pedido>
@@ -57,7 +54,7 @@ namespace datos
             List<string> data = new(){ };
             misPedidos.ForEach(Pedido =>
             {
-                var str =$"{Pedido.idPedido},{Pedido.fecha},{Pedido.listaDePan},{Pedido.precioPedido},{Pedido.dniCliente}";
+                var str =$"{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido}";
                 data.Add(str);
             });
             File.WriteAllLines(_filePedidos, data);
@@ -66,68 +63,22 @@ namespace datos
 
          public List<Pedido> leer()
         {
-            List<Pedido> misPedidos = new(){
+            List<Pedido> misPedidos = new();
                 var data = File.ReadAllLines(_filePedidos).Where(row => row.Length > 0).ToList();
                 data.ForEach(row =>
                 {
                     var campos = row.Split(",");
                     Pedido pedido = new Pedido
                     (
-                        IDPedido : campos[0],
-                        Fecha : campos[1],
-                        Apellido : campos[2],
-                        DNI : campos[3],
-                        Direccion : campos[4]
-                    )
+                        dniCliente : campos[0],
+                        fecha : campos[1],
+                        precioPedido : double.Parse(campos[2])
+                    );
                     misPedidos.Add(pedido);
                 });
 
                 return misPedidos;
-            }
-        }
-
-
-    }
-
-    
-    public class PedidosCSV : IData<Pedido>
-    {
-        string _filePedidos = "../../RepositoriosCSV/pedidos.csv";
-
-        public void guardar(List<Pedido> misPedidos)
-        {
-            List<string> data = new(){ };
-            misPedidos.ForEach(Pedido =>
-            {
-                var str =$"{Cliente.idCliente},{Cliente.nombre},{Cliente.apellido},{Cliente.dni},{Cliente.direccion}";
-                data.Add(str);
-            });
-            File.WriteAllLines(_filePedidos, data);
-
-
-        }
-
-        public List<Pedido> leer()
-        {
-            List<Pedido> misClientes = new();
-                var data = File.ReadAllLines(_filePedidos).Where(row => row.Length > 0).ToList();
-                data.ForEach(row =>
-                {
-                    var campos = row.Split(",");
-                    Pedido pedido = new Pedido
-                    (
-                        IDPedido : int.Parse(campos[0]),
-                        Nombre : campos[1],
-                        Apellido : campos[2],
-                        DNI : campos[3],
-                        Direccion : campos[4]
-                    );
-                    misPedidos.Add(Pedido);
-                });
-
-                return misPedidos;
             
-        }
+        }    
     }
-
 }

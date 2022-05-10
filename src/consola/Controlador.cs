@@ -1,5 +1,8 @@
-using consola;
+
 using sistema;
+using System.Linq;
+using System.Collections.Generic;
+using System;
 
 
 
@@ -36,7 +39,7 @@ namespace consola
         public void Run()
         {
             _vista.LimpiarPantalla();
-            var menu = _casosdeUso.Keys.ToList<String>();
+            var menu = _casosdeUso.Keys.ToList<string>();
 
             while(true)
             try
@@ -67,7 +70,7 @@ namespace consola
                 {"Añadir Pedido",aniadirPedido},
                 {"Cambiar Pedido",cambiarPedido}
             };
-            var menuPedidos = _gestionPedidos.Keys.ToList<String>();
+            var menuPedidos = _gestionPedidos.Keys.ToList<string>();
             try
             {
                  _vista.LimpiarPantalla();
@@ -84,17 +87,35 @@ namespace consola
         {
             try
             {
-                int idPedido, string dniCliente, List<Pan> listaDePan,DateTime fecha, double precio
-                var id = _vista.TryObtenerDatoDeTipo<int>("ID del pedido");
+                var dniCliente = _vista.TryObtenerDatoDeTipo<string>("Introduzca dni");
+                if(_sistema.misClientes.Find(cliente => dniCliente.Equals(cliente.dni))==null)
+                {
+                    _vista.Mostrar("El dni no figura en el sistema\nPorfavor pruebe denuevo\no registre a nuevo cliente.");
+                }else{
+                    
+
+                    // var fecha = _vista.TryObtenerDatoDeTipo<string>("Introduzca fecha");
+                    // var precioPedido
+                }
+
             }
         }
+        private void cambiarPedido(){}
+
+        private void verPedidos(){}
 
 
 
+    // -------Gestion de Clientes ---------------------
 
 
+        private void gestionClientes(){}
 
 
+    // -------Gestion de Finanzas ---------------------
+
+
+        private void gestionFinanzas(){}
 
 
 

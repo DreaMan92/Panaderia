@@ -1,4 +1,5 @@
 ﻿namespace datos;
+using System.Collections.Generic;
 
 public interface IData<T>
 {

@@ -1,0 +1,17 @@
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\sistema.deps.json
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\sistema.dll
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\sistema.pdb
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\datos.dll
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\modelos.dll
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\datos.pdb
+C:\Users\guly_\Desktop\Panaderia\src\sistema\bin\Debug\net6.0\modelos.pdb
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.csproj.AssemblyReference.cache
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.AssemblyInfoInputs.cache
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.AssemblyInfo.cs
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.csproj.CoreCompileInputs.cache
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.csproj.CopyComplete
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.dll
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\refint\sistema.dll
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\sistema.pdb
+C:\Users\guly_\Desktop\Panaderia\src\sistema\obj\Debug\net6.0\ref\sistema.dll
