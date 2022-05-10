@@ -29,7 +29,7 @@ namespace datos
                     var campos = row.Split(",");
                     Cliente cliente = new Cliente
                     (
-                        IDPedido : campos[0],
+                        IDCliente : campos[0],
                         Nombre : campos[1],
                         Apellido : campos[2],
                         DNI : campos[3],
@@ -42,10 +42,47 @@ namespace datos
             }
         }
 
+    }
+    public class PedidosCSV : IData<Pedido>
+    {
+         string _filePedidos = "../../RepositoriosCSV/pedidos.csv";
+
+        public void guardar(List<Pedido> misPedidos)
+        {
+            List<string> data = new(){ };
+            misPedidos.ForEach(Pedido =>
+            {
+                var str =$"{Pedido.idPedido},{Pedido.fecha},{Pedido.listaDePan},{Pedido.precioPedido},{Pedido.dniCliente}";
+                data.Add(str);
+            });
+            File.WriteAllLines(_filePedidos, data);
+
+        }
+
+         public List<Pedido> leer()
+        {
+            List<Pedido> misPedidos = new(){
+                var data = File.ReadAllLines(_filePedidos).Where(row => row.Length > 0).ToList();
+                data.ForEach(row =>
+                {
+                    var campos = row.Split(",");
+                    Pedido pedido = new Pedido
+                    (
+                        IDPedido : campos[0],
+                        Fecha : campos[1],
+                        Apellido : campos[2],
+                        DNI : campos[3],
+                        Direccion : campos[4]
+                    )
+                    misPedidos.Add(pedido);
+                });
+
+                return misPedidos;
+            }
+        }
 
 
     }
-
 
 
 
