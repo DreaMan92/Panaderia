@@ -5,7 +5,6 @@ using consola;
 
 
 
-
 var RePoC = new ClientesCSV();
 var RePoP = new PedidosCSV();
 var view = new Vista();

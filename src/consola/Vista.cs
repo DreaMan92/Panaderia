@@ -8,7 +8,11 @@ namespace consola
 {
     public class Vista
     {
-        // String de cancelación de la entrada de datos.
+        public Vista(){
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            //con esto conseguimos que reconozca el simbolo del euro al mostrar en consola.
+        }
+        // String de cancelaciï¿½n de la entrada de datos.
         const string CANCELINPUT = "fin";
         // Helpers
         public List<T> EnumToList<T>() => new List<T>(Enum.GetValues(typeof(T)).Cast<T>());
@@ -50,7 +54,7 @@ namespace consola
             {
                 Write(msg);
                 var input = ReadLine();
-                // c# throw new Exception: Lanzamos una Excepción para indicar que el usuario ha cancelado la entrada
+                // c# throw new Exception: Lanzamos una Excepciï¿½n para indicar que el usuario ha cancelado la entrada
                 if (input.ToLower().Trim() == CANCELINPUT) throw new Exception("Entrada cancelada por el usuario");
                 if (input == "") input = @default;
                 try
@@ -102,7 +106,7 @@ namespace consola
             {
                 Write(msg);
                 var input = ReadLine();
-                // c# throw new Exception: Lanzamos una Excepción para indicar que el usuario ha cancelado la entrada
+                // c# throw new Exception: Lanzamos una Excepciï¿½n para indicar que el usuario ha cancelado la entrada
                 if (input.ToLower().Trim() == CANCELINPUT) throw new Exception("Entrada cancelada por el usuario");
                 try
                 {
@@ -128,7 +132,7 @@ namespace consola
             {
                 Write(msg);
                 var input = ReadLine();
-                // c# throw new Exception: Lanzamos una Excepción para indicar que el usuario ha cancelado la entrada
+                // c# throw new Exception: Lanzamos una Excepciï¿½n para indicar que el usuario ha cancelado la entrada
                 if (input.ToLower().Trim() == CANCELINPUT) throw new Exception("Entrada cancelada por el usuario");
                 try
                 {
@@ -169,7 +173,7 @@ namespace consola
             {
                 Write(msg);
                 var input = ReadLine();
-                // c# throw new Exception: Lanzamos una Excepción para indicar que el usuario ha cancelado la entrada
+                // c# throw new Exception: Lanzamos una Excepciï¿½n para indicar que el usuario ha cancelado la entrada
                 if (input.ToLower().Trim() == CANCELINPUT) throw new Exception("Entrada cancelada por el usuario");
                 if (input == "") input = predeterminado.ToString();
                 try

@@ -59,6 +59,9 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
 + ### 2 horas
     > Resolviendo problemas
     > empezando gestor
+* + ### 4 horas
+    > avanzando mucho
+    >todavia falta la mitad
 
 
 
@@ -66,5 +69,5 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
 + https://docs.microsoft.com/es-es/dotnet/api/system.guid.newguid?view=net-6.0
 + https://github.com/krs98/Mascotas/blob/master/src/Models/Models.cs
 + https://support.ptc.com/help/creo/creo_schem/usascii/index.html#page/Schematics_hc/About_Including_a_List_of_Values_in_a_CSV_File.html
-+ 
++ http://net-informations.com/q/faq/stringdate.html (Parsear string to fecha)
 

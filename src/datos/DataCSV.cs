@@ -15,7 +15,7 @@ namespace datos
             List<string> data = new(){ };
             misClientes.ForEach(Cliente =>
             {
-                var str =$"{Cliente.nombre},{Cliente.apellido},{Cliente.dni},{Cliente.telefono},{Cliente.direccion}";
+                var str =$"{Cliente.nombre},{Cliente.apellido},{Cliente.dni},{Cliente.telefono},{Cliente.pueblo}";
                 data.Add(str);
             });
             File.WriteAllLines(_fileClientes, data);
@@ -31,11 +31,11 @@ namespace datos
                     var campos = row.Split(",");
                     Cliente cliente = new Cliente
                     (               
-                        nombre : campos[1],
-                        apellido : campos[2],
-                        dni : campos[3],
-                        telefono : campos[4],
-                        direccion : campos[5]
+                        nombre : campos[0],
+                        apellido : campos[1],
+                        dni : campos[2],
+                        telefono : campos[3],
+                        pueblo : campos[4]
                     );
                     misClientes.Add(cliente);
                 });
@@ -54,7 +54,7 @@ namespace datos
             List<string> data = new(){ };
             misPedidos.ForEach(Pedido =>
             {
-                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido}";
+                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido},{Pedido.precioPedido}";
                 data.Add(str);
             });
             File.WriteAllLines(_filePedidos, data);
@@ -72,8 +72,9 @@ namespace datos
                     (
                         ID : Guid.Parse(campos[0]),
                         dniCliente : campos[1],
-                        fecha : campos[2],
-                        precioPedido : double.Parse(campos[3])
+                        fecha : DateTime.Parse(campos[2]),
+                        precioPedido : double.Parse(campos[3]),
+                        pagado : campos[4]
                     );
                     misPedidos.Add(pedido);
                 });
