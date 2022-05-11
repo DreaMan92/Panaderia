@@ -28,20 +28,34 @@ namespace modelos
 
     public class Pedido
     {
+        public int ID { get; set; }
         public string dniCliente { get; set;}
         public string fecha { get; set; }
         public double precioPedido { get; set; }
         public List<Pan> listaDePan { get; set; }        
 
-        public Pedido( string dniCliente, string fecha, double precioPedido)
+        public Pedido( int ID,string dniCliente, string fecha, double precioPedido)
         {
+            this.ID=ID;
             this.dniCliente=dniCliente;
             this.fecha = fecha;
             this.precioPedido = precioPedido;           
         }
         public Pedido(){}
     }
+    public class listaPan
+    {
+        public Guid IDPedido { get; set; }
+        public tipoDePan tipo { get; set; }
+        public int cantidad { get; set; }
 
+        public listaPan(Guid IDPedido, tipoDePan tipo, int cantidad)
+        {
+            this.IDPedido=Guid.NewGuid();
+            this.tipo=tipo;
+            this.cantidad=cantidad;
+        }
+    }
     public enum tipoDePan
     {
         Chapata,//900gr

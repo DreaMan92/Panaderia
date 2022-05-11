@@ -98,7 +98,7 @@ namespace consola
                     // var precioPedido
                 }
 
-            }
+            }catch{ return;}
         }
         private void cambiarPedido(){}
 
