@@ -23,9 +23,13 @@ namespace sistema
 
 
 
-        
+// -------Gestion de Clientes ---------------------
 
-
+    public void nuevoCliente(Cliente c)
+    {
+        misClientes.Add(c);
+        RepoClientes.guardar(misClientes);
+    }
 
 
 

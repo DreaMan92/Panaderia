@@ -3,6 +3,7 @@ using sistema;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using modelos;
 
 
 
@@ -17,10 +18,10 @@ namespace consola
         private Gestor _sistema;
         private Dictionary<string, Action> _casosdeUso;
         private Dictionary<string, Action> _gestionPedidos;
-        private Dictionary<string, Action> _gestionClientess;
+        private Dictionary<string, Action> _gestionClientes;
         private Dictionary<string, Action> _gestionFinanzas;
 
-
+        
 
         public Controlador(Vista vista, Gestor logicaNegocio)
         {
@@ -61,6 +62,8 @@ namespace consola
         }
         // === Casos De Uso ===
 
+        public void volverAtras(){}
+
     // -------Gestion de Pedidos ---------------------
         private void gestionPedidos()
         {
@@ -68,7 +71,8 @@ namespace consola
             {
                 {"Ver Pedidos",verPedidos},
                 {"Añadir Pedido",aniadirPedido},
-                {"Cambiar Pedido",cambiarPedido}
+                {"Cambiar Pedido",cambiarPedido},
+                 {"Volver atras",volverAtras}
             };
             var menuPedidos = _gestionPedidos.Keys.ToList<string>();
             try
@@ -109,8 +113,49 @@ namespace consola
     // -------Gestion de Clientes ---------------------
 
 
-        private void gestionClientes(){}
+        private void gestionClientes()
+        {
+            _gestionClientes = new Dictionary<string, Action>()
+            {
+                {"Añadir Cliente nuevo",aniadirCliente},
+                {"Borrar Cliente",borrarCliente},
+                {"Ver Cliente",verCliente},
+                {"Volver atras",volverAtras}
+            };
+            var menuClientes = _gestionClientes.Keys.ToList<string>();
+            try
+            {
+                 _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Gestión de Clientes",menuClientes,"Selecciona una opción ");
+                _vista.Mostrar("");
+                _casosdeUso[key].Invoke();
+                _vista.MostrarYReturn("Pulsa <Return> para continuar");
 
+            }
+            catch { return; }
+        }
+        public void aniadirCliente(){
+            //  this.nombre = nombre;
+            // this.apellido = apellido;
+            // this.dni = dni;
+            // this.telefono = telefono;
+            // this.direccion = direccion;
+            try
+            {
+                var nombre = _vista.TryObtenerDatoDeTipo<string>("Nombre del cliente");
+                var apellido = _vista.TryObtenerDatoDeTipo<string>("Apellido del cliente");
+                var dni = _vista.TryObtenerDatoDeTipo<string>("DNI del cliente");
+                var telefono = _vista.TryObtenerDatoDeTipo<string>("Telefono del cliente");
+                var direccion = _vista.TryObtenerDatoDeTipo<string>("Dirección del cliente");
+                Cliente nuevo = new Cliente
+            
+            
+            
+            }
+        }
+        public void borrarCliente(){}
+        public void verCliente(){}
+        
 
     // -------Gestion de Finanzas ---------------------
 

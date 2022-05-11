@@ -54,7 +54,7 @@ namespace datos
             List<string> data = new(){ };
             misPedidos.ForEach(Pedido =>
             {
-                var str =$"{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido}";
+                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido}";
                 data.Add(str);
             });
             File.WriteAllLines(_filePedidos, data);
@@ -70,9 +70,10 @@ namespace datos
                     var campos = row.Split(",");
                     Pedido pedido = new Pedido
                     (
-                        dniCliente : campos[0],
-                        fecha : campos[1],
-                        precioPedido : double.Parse(campos[2])
+                        ID : Guid.Parse(campos[0]),
+                        dniCliente : campos[1],
+                        fecha : campos[2],
+                        precioPedido : double.Parse(campos[3])
                     );
                     misPedidos.Add(pedido);
                 });
