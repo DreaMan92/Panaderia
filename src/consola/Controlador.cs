@@ -127,14 +127,14 @@ namespace consola
                         precioPedido:precio,
                         pagado:pagado
                     );  
-                    nuevo.listPanCant=panParaLista;
-                    _sistema.nuevoPedido(nuevo);
+                    // nuevo.listPanCant=panParaLista;
+                    _sistema.nuevoPedido(nuevo,panParaLista);
                 }
 
             }catch{ return;}
             finally
             {
-                _vista.Mostrar("Nuevo pedido registrado.");
+                _vista.Mostrar("\n\nNuevo pedido registrado.\n");
             }
         }
         private void cambiarPedido(){}

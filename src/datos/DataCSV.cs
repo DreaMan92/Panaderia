@@ -3,6 +3,7 @@ using modelos;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 
 namespace datos
 {
@@ -54,7 +55,7 @@ namespace datos
             List<string> data = new(){ };
             misPedidos.ForEach(Pedido =>
             {
-                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha},{Pedido.precioPedido},{Pedido.pagado}";
+                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha.ToShortDateString()},{Pedido.precioPedido.ToString(CultureInfo.InvariantCulture)},{Pedido.pagado}";
                 data.Add(str);
             });
             File.WriteAllLines(_filePedidos, data);
@@ -72,7 +73,7 @@ namespace datos
                     (
                         ID : Guid.Parse(campos[0]),
                         dniCliente : campos[1],
-                        fecha : DateTime.Parse(campos[2]).Date,
+                        fecha : DateTime.Parse(campos[2]),
                         precioPedido : Decimal.Parse(campos[3]),
                         pagado : campos[4]
                     );
@@ -83,4 +84,5 @@ namespace datos
             
         }    
     }
+    
 }

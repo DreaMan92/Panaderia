@@ -52,22 +52,26 @@ namespace sistema
 
 // -------Gestion de Pedidos ---------------------
 
-public int calcularPrecioPedido(Dictionary<Pan,int> unaLista)
+public Decimal calcularPrecioPedido(Dictionary<Pan,int> unaLista)
 {
-    int devolver=0;
+    Decimal devolver=0;
     foreach (var i in unaLista){
-        devolver= devolver+i.Value;
+        devolver= devolver+(i.Key.precio*i.Value);
     }
-    return devolver;  
-    
+    return devolver;      
 }
-public void nuevoPedido(Pedido p)
+public void nuevoPedido(Pedido p,Dictionary<Pan, int> uno)
 {
     misPedidos.Add(p);
     RepoPedidos.guardar(misPedidos);
+    guardarPanespedido(uno);
 }
 
+public void guardarPanespedido(Dictionary<Pan, int> uno)
+{
+    
 
+}
 
 
 

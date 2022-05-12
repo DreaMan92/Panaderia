@@ -66,7 +66,4 @@ namespace modelos
         $"{tipo}  precio: {precio} \u20AC";
        
     }
-   
-
-
 }
