@@ -99,18 +99,18 @@ namespace consola
                 {
                     _vista.Mostrar("El dni no figura en el sistema\nPorfavor pruebe denuevo\nSi no esta registrado el dni, registre a nuevo cliente.");
                 }else{
-                    Regex rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b");
                     Dictionary<Pan, int> panParaLista= new Dictionary<Pan, int>();
                     Pan panNuevo;
                     int cantidad;
                     string fuera="";
                     Boolean salir = false;
                     while(!salir){
+                        _vista.LimpiarPantalla();
                         panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan",_sistema.misProductos,"Seleciona un Pan");
                         cantidad=_vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                         panParaLista.Add(panNuevo,cantidad);
                         fuera = _vista.TryObtenerDatoDeTipo<string>("Quieres salir ( S/N )");
-                        if(panNuevo.ToString().Equals("s",StringComparison.InvariantCultureIgnoreCase))
+                        if(fuera.Equals("s",StringComparison.InvariantCultureIgnoreCase))
                         {
                             salir=true;
                         }  
@@ -118,10 +118,24 @@ namespace consola
                     var ID = Guid.NewGuid();
                     var fecha = DateTime.Today;   
                     var precio =_sistema.calcularPrecioPedido(panParaLista); 
-                    var pagado = false;            
+                    var pagado = "false";  
+                    Pedido nuevo = new Pedido
+                    (
+                        ID:ID,
+                        dniCliente:dniCli,
+                        fecha:fecha.Date,
+                        precioPedido:precio,
+                        pagado:pagado
+                    );  
+                    nuevo.listPanCant=panParaLista;
+                    _sistema.nuevoPedido(nuevo);
                 }
 
             }catch{ return;}
+            finally
+            {
+                _vista.Mostrar("Nuevo pedido registrado.");
+            }
         }
         private void cambiarPedido(){}
 

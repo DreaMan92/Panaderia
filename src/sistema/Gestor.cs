@@ -26,11 +26,11 @@ namespace sistema
     public void generarPanes()
     {
         misProductos = new List<Pan>();
-        Pan chapata = new Pan(tipoDePan.Chapata,1.30);
-        Pan torta = new Pan(tipoDePan.TortaDeAceite,1.50);
-        Pan gallego = new Pan(tipoDePan.PanGallego,1.10);
-        Pan hogaza = new Pan(tipoDePan.Hogaza,2.50);
-        Pan barra = new Pan(tipoDePan.BarraDePueblo,1.00);
+        Pan chapata = new Pan(tipoDePan.Chapata,1.30M);
+        Pan torta = new Pan(tipoDePan.TortaDeAceite,1.50M);
+        Pan gallego = new Pan(tipoDePan.PanGallego,1.10M);
+        Pan hogaza = new Pan(tipoDePan.Hogaza,2.50M);
+        Pan barra = new Pan(tipoDePan.BarraDePueblo,1.00M);
         misProductos.Add(chapata);
         misProductos.Add(torta);
         misProductos.Add(gallego);
@@ -60,6 +60,11 @@ public int calcularPrecioPedido(Dictionary<Pan,int> unaLista)
     }
     return devolver;  
     
+}
+public void nuevoPedido(Pedido p)
+{
+    misPedidos.Add(p);
+    RepoPedidos.guardar(misPedidos);
 }
 
 
