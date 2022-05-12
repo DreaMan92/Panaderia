@@ -11,14 +11,18 @@ namespace sistema
     {
         ClientesCSV RepoClientes;
         PedidosCSV RepoPedidos;
+        PanesPedidosCSV RepoPanPedido;
         public List<Cliente> misClientes;
         public List<Pedido> misPedidos;
         public List<Pan> misProductos ;
-        public Gestor(ClientesCSV repoC, PedidosCSV repoP){
+        public List<PanesPedido> misPanesPorPedido;
+        public Gestor(ClientesCSV repoC, PedidosCSV repoP, PanesPedidosCSV repoPanPedido){
             RepoClientes = repoC;
             RepoPedidos = repoP;
+            RepoPanPedido = repoPanPedido;
             misClientes=RepoClientes.leer();
             misPedidos=RepoPedidos.leer();
+            misPanesPorPedido = RepoPanPedido.leer();
             generarPanes();
         }
 //----------Pan-------------------
@@ -64,11 +68,29 @@ public void nuevoPedido(Pedido p,Dictionary<Pan, int> uno)
 {
     misPedidos.Add(p);
     RepoPedidos.guardar(misPedidos);
-    guardarPanespedido(uno);
+    guardarPanespedido(p,uno);
 }
 
-public void guardarPanespedido(Dictionary<Pan, int> uno)
+public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
 {
+   List<PanesPedido> nuevaLista = new List<PanesPedido>();
+   foreach( var i in uno)
+//    while(uno.Keys != null)
+
+   {
+       PanesPedido nuevo = new PanesPedido
+       (
+           ID : p.ID,
+           pan : i.Key,
+           cantidad : i.Value
+       );
+       nuevaLista.Add(nuevo);
+   }
+   foreach(var i in nuevaLista){
+       misPanesPorPedido.Add(i);
+   }
+   RepoPanPedido.guardar(misPanesPorPedido);
+
     
 
 }

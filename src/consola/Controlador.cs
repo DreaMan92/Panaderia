@@ -127,7 +127,7 @@ namespace consola
                         precioPedido:precio,
                         pagado:pagado
                     );  
-                    // nuevo.listPanCant=panParaLista;
+                    
                     _sistema.nuevoPedido(nuevo,panParaLista);
                 }
 

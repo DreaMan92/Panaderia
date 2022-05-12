@@ -7,6 +7,7 @@ using System.Globalization;
 
 namespace datos
 {
+    /*-----------------Data Clientes-------------------------*/
     public class ClientesCSV : IData<Cliente>
     {
         string _fileClientes = "../../RepositoriosCSV/clientes.csv";
@@ -46,6 +47,7 @@ namespace datos
         }
 
     }
+    /*-----------------Data Pedidos-------------------------*/
     public class PedidosCSV : IData<Pedido>
     {
          string _filePedidos = "../../RepositoriosCSV/pedidos.csv";
@@ -83,6 +85,56 @@ namespace datos
                 return misPedidos;
             
         }    
+    }
+    /*-----------------Data Pan pedidos-------------------------*/
+
+    public class PanesPedidosCSV : IData<PanesPedido>
+    {
+        string _filePanesPedidos =  "../../RepositoriosCSV/panesPedidos.csv";
+
+         public void guardar(List<PanesPedido> misPanesPorPedido)
+        {
+            List<string> data = new(){ };
+            misPanesPorPedido.ForEach(PanesPedido =>
+            {
+                var str =$"{PanesPedido.ID.ToString()},{PanesPedido.pan.ToCSV()},{PanesPedido.cantidad.ToString()}";
+                data.Add(str);
+            });
+            File.WriteAllLines(_filePanesPedidos, data);
+
+        }
+
+         public List<PanesPedido> leer()
+        {
+            List<PanesPedido> misPanesPorPedido = new();
+                var data = File.ReadAllLines(_filePanesPedidos).Where(row => row.Length > 0).ToList();
+                data.ForEach(row =>
+                {
+                    var campos = row.Split(",");
+                    var panesPedido = new PanesPedido
+                    (
+                        ID : Guid.Parse(campos[0]),
+                        pan : new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2])),
+                        cantidad : int.Parse(campos[2])
+                    );
+                    misPanesPorPedido.Add(panesPedido);
+                });
+
+                return misPanesPorPedido;
+            
+        }    
+
+        // public Pan parsePan(string cadena)
+        // {
+        //     var campos = cadena.Split(",");
+        //     Pan nuevo = new Pan
+        //     (
+        //         tipo : (tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[0]),
+        //         precio : Decimal.Parse(campos[1])
+        //     );
+        //     return nuevo;
+        // }
+
     }
     
 }

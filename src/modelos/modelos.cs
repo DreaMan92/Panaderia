@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Globalization;
 
 namespace modelos
 {
@@ -22,28 +23,7 @@ namespace modelos
         $"{nombre} {apellido} con DNI: {dni} y Tfno: {telefono} - Pueblo: {pueblo} ";
     }
 
-    public class Pedido
-    {
-        public Guid ID { get; set; }
-        public string dniCliente { get; set;}
-        public DateTime fecha { get; set; }
-        public Decimal precioPedido { get; set; }
-        public string pagado { get; set; }
-        public Dictionary<Pan,int> listPanCant { get; set; } 
-        public Dictionary<Guid,Dictionary<Pan,int>> listIdPan { get; set; }
-        public Pedido(){}     
-
-        public Pedido( Guid ID,string dniCliente, DateTime fecha, Decimal precioPedido,string pagado)
-        {
-            this.ID=Guid.NewGuid();
-            this.dniCliente=dniCliente;
-            this.fecha = fecha;
-            this.precioPedido = Math.Round(precioPedido,2); 
-            this.pagado=pagado;          
-        }
-        
-    }
-    public enum tipoDePan
+     public enum tipoDePan
     {
         Chapata,
         TortaDeAceite,
@@ -64,6 +44,45 @@ namespace modelos
         }
         public override string ToString() =>
         $"{tipo}  precio: {precio} \u20AC";
+        public string ToCSV()=>
+        $"{tipo},{precio.ToString(CultureInfo.InvariantCulture)}";
        
     }
+
+    public class Pedido
+    {
+        public Guid ID { get; set; }
+        public string dniCliente { get; set;}
+        public DateTime fecha { get; set; }
+        public Decimal precioPedido { get; set; }
+        public string pagado { get; set; }
+    
+        public Pedido(){}     
+
+        public Pedido( Guid ID,string dniCliente, DateTime fecha, Decimal precioPedido,string pagado)
+        {
+            this.ID=Guid.NewGuid();
+            this.dniCliente=dniCliente;
+            this.fecha = fecha;
+            this.precioPedido = Math.Round(precioPedido,2); 
+            this.pagado=pagado;          
+        }        
+    }
+    public class PanesPedido
+    {
+        public Guid ID { get; set;}
+        public Pan pan { get; set; }
+        public int cantidad { get; set; }
+
+        public PanesPedido(Guid ID, Pan pan, int cantidad)
+        {
+            this.ID=ID;
+            this.pan=pan;
+            this.cantidad=cantidad;
+
+        }
+        public override string ToString() =>
+        $"{ID},{pan},{cantidad}";
+    }
+   
 }

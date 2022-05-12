@@ -64,6 +64,9 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
     >todavia falta la mitad
 + ### 4 horas
     > en calse avanzado con pedidos
++ ### 2 horas
+    > dos horas mas en casa haciendo csv y metodos para panpedidos
+
 
 
 
