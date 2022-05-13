@@ -111,11 +111,13 @@ namespace datos
                 data.ForEach(row =>
                 {
                     var campos = row.Split(",");
+                    // var pan=  new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2]));
+
                     var panesPedido = new PanesPedido
                     (
                         ID : Guid.Parse(campos[0]),
-                        pan : new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2])),
-                        cantidad : int.Parse(campos[2])
+                        pan :new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2])),
+                        cantidad : int.Parse(campos[3])
                     );
                     misPanesPorPedido.Add(panesPedido);
                 });
