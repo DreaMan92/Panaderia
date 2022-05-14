@@ -137,7 +137,10 @@ namespace consola
                 _vista.Mostrar("\n\nNuevo pedido registrado.\n");
             }
         }
-        private void cambiarPedido(){}
+        private void cambiarPedido()
+        {
+            
+        }
 
         private void verPedidos(){}
 
@@ -221,7 +224,15 @@ namespace consola
            _vista.MostrarListaEnumerada<Cliente>("Lista de Clientes",_sistema.misClientes);
 
         }
-        public void verDeudasPorCliente(){}
+        public void verDeudasPorCliente()
+        {
+            List<string> lista = new List<string>();
+            foreach(Cliente i in _sistema.misClientes){
+               lista.Add( i.verClientesConPedido()+_sistema.deudaPorCliente(i));
+            }
+            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas",lista);
+        }
+       
         public void verPedidosPorClientes(){}
         
 

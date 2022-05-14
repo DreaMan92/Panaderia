@@ -21,6 +21,9 @@ namespace modelos
         }
         public override string ToString() =>
         $"{nombre} {apellido} con DNI: {dni} y Tfno: {telefono} - Pueblo: {pueblo} ";
+
+        public string verClientesConPedido()=>
+        $"{nombre} {apellido} - Pueblo: {pueblo} ";
     }
 
      public enum tipoDePan

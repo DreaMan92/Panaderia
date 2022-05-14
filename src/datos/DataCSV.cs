@@ -111,8 +111,6 @@ namespace datos
                 data.ForEach(row =>
                 {
                     var campos = row.Split(",");
-                    // var pan=  new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2]));
-
                     var panesPedido = new PanesPedido
                     (
                         ID : Guid.Parse(campos[0]),
@@ -125,17 +123,6 @@ namespace datos
                 return misPanesPorPedido;
             
         }    
-
-        // public Pan parsePan(string cadena)
-        // {
-        //     var campos = cadena.Split(",");
-        //     Pan nuevo = new Pan
-        //     (
-        //         tipo : (tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[0]),
-        //         precio : Decimal.Parse(campos[1])
-        //     );
-        //     return nuevo;
-        // }
 
     }
     

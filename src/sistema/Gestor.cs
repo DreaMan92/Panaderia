@@ -54,6 +54,7 @@ namespace sistema
         RepoClientes.guardar(misClientes);
     }
 
+
 // -------Gestion de Pedidos ---------------------
 
 public Decimal calcularPrecioPedido(Dictionary<Pan,int> unaLista)
@@ -89,11 +90,20 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
    foreach(var i in nuevaLista){
        misPanesPorPedido.Add(i);
    }
-   RepoPanPedido.guardar(misPanesPorPedido);
+   RepoPanPedido.guardar(misPanesPorPedido);   
+
+}
+public Pedido pedidoDeCliente(Cliente uno)=>
+misPedidos.Find(pedido => uno.dni.ToString().Equals(uno.dni.ToString()));
+
+public string deudaPorCliente(Cliente uno)
+{
+    string cadena = pedidoDeCliente(uno).precioPedido.ToString();
+    return cadena;
+}
 
     
 
-}
 
 
 

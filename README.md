@@ -66,6 +66,8 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
     > en calse avanzado con pedidos
 + ### 2 horas
     > dos horas mas en casa haciendo csv y metodos para panpedidos
++ ### 1 horas
+    > decidiendo como implementar subcasos de uso
 
 
 
