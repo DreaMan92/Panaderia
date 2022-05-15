@@ -205,8 +205,8 @@ namespace consola
             _verClientes = new Dictionary<string, Action>()
             {
                 {"Ver datos de clientes",verDatosPorCliente},
-                {"Ver deudas de clientes",verDeudasPorCliente},
-                {"Ver pedidos de clientes",verPedidosPorClientes}
+                {"Ver deudas de cliente",verDeudasPorCliente},
+                {"Ver pedidos de cliente",verPedidosPorClientes}
             };
             var menuClientes2 = _verClientes.Keys.ToList<String>();
             try
@@ -233,13 +233,24 @@ namespace consola
             _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas",lista);
         }
        
-        public void verPedidosPorClientes(){}
+        public void verPedidosPorClientes()
+        {
+            Cliente nuevo;
+            nuevo=_vista.TryObtenerElementoDeLista("Clientes",_sistema.misClientes,"Selecciona un cliente");
+            _vista.Mostrar("Cliente "+nuevo.ToString()+"\n");
+            _vista.Mostrar("Pedido: \n"+_sistema.pedidoDeCliente(nuevo));
+            
+        }
         
 
     // -------Gestion de Finanzas ---------------------
 
 
         private void gestionFinanzas(){}
+        //opcion liquidar deudas, Por pedido o todos los pedidos
+
+
+
 
 
 

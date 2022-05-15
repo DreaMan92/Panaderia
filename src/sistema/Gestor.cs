@@ -76,7 +76,6 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
 {
    List<PanesPedido> nuevaLista = new List<PanesPedido>();
    foreach( var i in uno)
-//    while(uno.Keys != null)
 
    {
        PanesPedido nuevo = new PanesPedido
@@ -90,17 +89,22 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
    foreach(var i in nuevaLista){
        misPanesPorPedido.Add(i);
    }
-   RepoPanPedido.guardar(misPanesPorPedido);   
+   RepoPanPedido.guardar(misPanesPorPedido);  
+   p.listaDePan=nuevaLista; 
 
 }
 public Pedido pedidoDeCliente(Cliente uno)=>
 misPedidos.Find(pedido => uno.dni.ToString().Equals(uno.dni.ToString()));
 
-public string deudaPorCliente(Cliente uno)
-{
-    string cadena = pedidoDeCliente(uno).precioPedido.ToString();
-    return cadena;
-}
+// public List<
+
+// public string deudaPorCliente(Cliente uno)
+// {
+//     string cadena = pedidoDeCliente(uno).precioPedido.ToString();
+//     return cadena;
+// }
+public string deudaPorCliente(Cliente uno)=>
+pedidoDeCliente(uno).precioPedido.ToString();
 
     
 

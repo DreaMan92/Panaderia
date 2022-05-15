@@ -59,6 +59,7 @@ namespace modelos
         public DateTime fecha { get; set; }
         public Decimal precioPedido { get; set; }
         public string pagado { get; set; }
+        public List<PanesPedido> listaDePan { get; set; }
     
         public Pedido(){}     
 
@@ -69,7 +70,19 @@ namespace modelos
             this.fecha = fecha;
             this.precioPedido = Math.Round(precioPedido,2); 
             this.pagado=pagado;          
-        }        
+        }   
+         public override string ToString() =>
+        $"Pedido de: {dniCliente} con fecha de: {fecha} \ntotal del pedido {precioPedido}\u20AC Pagado: {pagado} \nCon pedido: {ordenarLista(listaDePan)}";
+        public string ordenarLista(List<PanesPedido> uno)
+        {
+            string cadena="";
+            foreach(PanesPedido i in uno)
+            {
+                cadena = cadena+i.ToString()+"\n";
+            }
+            return cadena;
+        }
+
     }
     public class PanesPedido
     {
@@ -85,7 +98,7 @@ namespace modelos
 
         }
         public override string ToString() =>
-        $"{ID},{pan},{cantidad}";
+        $"{pan} - {cantidad} unidades";
     }
    
 }
