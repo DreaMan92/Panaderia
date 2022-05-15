@@ -68,6 +68,8 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
     > dos horas mas en casa haciendo csv y metodos para panpedidos
 + ### 1 horas
     > decidiendo como implementar subcasos de uso
++ ### 3 horas
+    > avanzando corregir metodo para asignar lista de panes a pedido.
 
 
 

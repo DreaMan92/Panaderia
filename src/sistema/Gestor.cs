@@ -24,6 +24,7 @@ namespace sistema
             misPedidos=RepoPedidos.leer();
             misPanesPorPedido = RepoPanPedido.leer();
             generarPanes();
+            asignarPanPedidoAPedido();
         }
 //----------Pan-------------------
 
@@ -90,26 +91,31 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
        misPanesPorPedido.Add(i);
    }
    RepoPanPedido.guardar(misPanesPorPedido);  
-   p.listaDePan=nuevaLista; 
+}
+public void asignarPanPedidoAPedido()
+{
+    foreach(Pedido i in misPedidos)
+    {
+        foreach(PanesPedido p in misPanesPorPedido)
+        {
+            if(p.ID.ToString().Equals(i.ID.ToString())){
+                i.listaDePan.Add(p);
+            }
+        }
+    }
 
 }
+
 public Pedido pedidoDeCliente(Cliente uno)=>
-misPedidos.Find(pedido => uno.dni.ToString().Equals(uno.dni.ToString()));
+misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
 
-// public List<
-
-// public string deudaPorCliente(Cliente uno)
-// {
-//     string cadena = pedidoDeCliente(uno).precioPedido.ToString();
-//     return cadena;
-// }
-public string deudaPorCliente(Cliente uno)=>
-pedidoDeCliente(uno).precioPedido.ToString();
+// public string deudaPorCliente(Cliente uno)=>
+// pedidoDeCliente(uno).precioPedido.ToString();
+/*------------------Gestion Panes Pedido-------------------*/
+public List<PanesPedido> listaDePanesPorPedido(Pedido uno) =>
+misPanesPorPedido.FindAll(panespedido => uno.ID.ToString().Equals(panespedido.ID.ToString()));
 
     
-
-
-
 
 
 

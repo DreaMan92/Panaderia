@@ -100,6 +100,7 @@ namespace consola
                     _vista.Mostrar("El dni no figura en el sistema\nPorfavor pruebe denuevo\nSi no esta registrado el dni, registre a nuevo cliente.");
                 }else{
                     Dictionary<Pan, int> panParaLista= new Dictionary<Pan, int>();
+                   // Decimal sumaPrecio=0;
                     Pan panNuevo;
                     int cantidad;
                     string fuera="";
@@ -109,6 +110,7 @@ namespace consola
                         panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan",_sistema.misProductos,"Seleciona un Pan");
                         cantidad=_vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                         panParaLista.Add(panNuevo,cantidad);
+                        //sumaPrecio=sumaPrecio+(panNuevo.precio*cantidad);
                         fuera = _vista.TryObtenerDatoDeTipo<string>("Quieres salir ( S/N )");
                         if(fuera.Equals("s",StringComparison.InvariantCultureIgnoreCase))
                         {
@@ -142,7 +144,13 @@ namespace consola
             
         }
 
-        private void verPedidos(){}
+        private void verPedidos()
+        {
+            foreach(Pedido i in _sistema.misPedidos){
+            _vista.Mostrar(i.ToString());
+            }
+            
+        }
 
 
 
@@ -205,8 +213,8 @@ namespace consola
             _verClientes = new Dictionary<string, Action>()
             {
                 {"Ver datos de clientes",verDatosPorCliente},
-                {"Ver deudas de cliente",verDeudasPorCliente},
-                {"Ver pedidos de cliente",verPedidosPorClientes}
+                {"Ver clientes con deudas",verDeudasPorCliente},
+                {"Ver pedidos por cliente",verPedidosPorClientes}
             };
             var menuClientes2 = _verClientes.Keys.ToList<String>();
             try
@@ -228,18 +236,35 @@ namespace consola
         {
             List<string> lista = new List<string>();
             foreach(Cliente i in _sistema.misClientes){
-               lista.Add( i.verClientesConPedido()+_sistema.deudaPorCliente(i));
+                if(_sistema.pedidoDeCliente(i) != null &&_sistema.pedidoDeCliente(i).pagado.Equals("false"))
+                {
+                    lista.Add( i.verClientesConPedido()+"Deuda a pagar: "+_sistema.pedidoDeCliente(i).precioPedido/100+" \u20AC " );
+                }else if(_sistema.pedidoDeCliente(i) != null )
+                {
+                    lista.Add( i.verClientesConPedido()+"Deuda a pagar:  0\u20AC");
+                }
+               
             }
             _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas",lista);
+
+            
         }
        
         public void verPedidosPorClientes()
         {
             Cliente nuevo;
-            nuevo=_vista.TryObtenerElementoDeLista("Clientes",_sistema.misClientes,"Selecciona un cliente");
-            _vista.Mostrar("Cliente "+nuevo.ToString()+"\n");
-            _vista.Mostrar("Pedido: \n"+_sistema.pedidoDeCliente(nuevo));
-            
+            nuevo=_vista.TryObtenerElementoDeLista("Clientes",_sistema.misClientes,"Selecciona un cliente");            
+            _vista.Mostrar("\nCliente",ConsoleColor.DarkYellow);
+            _vista.Mostrar(nuevo.ToString()+"\n");
+            _vista.Mostrar("\nPedido: ",ConsoleColor.DarkYellow);
+            _vista.Mostrar(_sistema.pedidoDeCliente(nuevo).stringParaVerCliente()+"\n");
+            _vista.Mostrar("Lista de panes\n",ConsoleColor.DarkYellow);
+
+            foreach(PanesPedido i in _sistema.misPanesPorPedido)//esta no es la lista adecuada,mejorarmetodo para que solo nos mande las que corresponden al pedido.
+            {
+                _vista.Mostrar(i.ToString()+"\n");
+            }           
+            /*_sistema.listaDePanesPorPedido(_sistema.pedidoDeCliente(nuevo))*/
         }
         
 

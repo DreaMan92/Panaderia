@@ -49,6 +49,8 @@ namespace modelos
         $"{tipo}  precio: {precio} \u20AC";
         public string ToCSV()=>
         $"{tipo},{precio.ToString(CultureInfo.InvariantCulture)}";
+        public string ToPanesPedido()=>
+        $"{tipo}";
        
     }
 
@@ -72,17 +74,11 @@ namespace modelos
             this.pagado=pagado;          
         }   
          public override string ToString() =>
-        $"Pedido de: {dniCliente} con fecha de: {fecha} \ntotal del pedido {precioPedido}\u20AC Pagado: {pagado} \nCon pedido: {ordenarLista(listaDePan)}";
-        public string ordenarLista(List<PanesPedido> uno)
-        {
-            string cadena="";
-            foreach(PanesPedido i in uno)
-            {
-                cadena = cadena+i.ToString()+"\n";
-            }
-            return cadena;
-        }
+        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido/100} \u20AC Pagado: {pagado}";
 
+        public string stringParaVerCliente()=>
+        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido/100} \u20AC Pagado: {pagado}";
+      
     }
     public class PanesPedido
     {
@@ -98,7 +94,7 @@ namespace modelos
 
         }
         public override string ToString() =>
-        $"{pan} - {cantidad} unidades";
+        $"{pan.ToPanesPedido()} - {cantidad} unidades";
     }
    
 }
