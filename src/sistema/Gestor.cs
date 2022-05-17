@@ -61,8 +61,9 @@ namespace sistema
         bool respuesta= false;
         foreach(Pedido i in misPedidos)
         {
-            if(i.dniCliente.Equals(dni));
+            if(i.dniCliente.Equals(dni)){
             respuesta = true;
+            }
         }
         return respuesta;
 

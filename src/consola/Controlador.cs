@@ -103,22 +103,29 @@ namespace consola
                     }
                     else
                     {
+                       
                         Dictionary<Pan, int> panParaLista = new Dictionary<Pan, int>();
                         Pan panNuevo;
                         int cantidad;
                         string fuera = "";
-                        Boolean salir = false;
-                        while (!salir)
+                       // Boolean salir = false;
+                        while (true)
                         {
+                            
                             _vista.LimpiarPantalla();
+                            try{
                             panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan", _sistema.misProductos, "Seleciona un Pan");
+                            
                             cantidad = _vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                             panParaLista.Add(panNuevo, cantidad);
+                            }catch(Exception e){ _vista.Mostrar("Ya se ha introducido datos para este tipo de pan");}
                             fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
                             if (fuera.Equals("s", StringComparison.InvariantCultureIgnoreCase))
-                            {
-                                salir = true;
-                            }
+                            
+                               // salir = true;
+                               break;
+                            
+                            
                         }
                         var ID = Guid.NewGuid();
                         var fecha = DateTime.Today;
@@ -133,12 +140,13 @@ namespace consola
                             pagado: pagado
                         );
                         _sistema.nuevoPedido(nuevo, panParaLista);
-                        _vista.Mostrar("\n\nNuevo pedido registrado.\n");
+                        _vista.Mostrar("\n\nNuevo pedido registrado.\n",ConsoleColor.DarkYellow);
+                        
                     }
                 }
 
             }
-            catch { return; }
+            catch{return; }
         }
         private void cambiarPedido()
         {
@@ -183,6 +191,7 @@ namespace consola
         {
             Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Pedidos registrados",_sistema.misPedidos,"Selecciona un pedido");
             _sistema.borrarPedido(nuevo);
+            _vista.Mostrar("\n\nPedido borrado\n",ConsoleColor.DarkYellow);
         }
 
         private void verPedidos()
