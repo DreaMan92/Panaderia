@@ -118,14 +118,10 @@ namespace consola
                             
                             cantidad = _vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                             panParaLista.Add(panNuevo, cantidad);
-                            }catch(Exception e){ _vista.Mostrar("Ya se ha introducido datos para este tipo de pan");}
+                            }catch{ _vista.Mostrar("\nYa se ha introducido datos para este tipo de pan\n");}
                             fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
                             if (fuera.Equals("s", StringComparison.InvariantCultureIgnoreCase))
-                            
-                               // salir = true;
-                               break;
-                            
-                            
+                               break;                            
                         }
                         var ID = Guid.NewGuid();
                         var fecha = DateTime.Today;

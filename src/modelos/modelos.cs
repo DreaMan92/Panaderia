@@ -74,7 +74,7 @@ namespace modelos
             this.pagado=pagado;          
         }   
          public override string ToString() =>
-        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}";
+        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}\n";
 
         public string stringParaVerCliente()=>
         $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}";
