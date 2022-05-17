@@ -164,7 +164,21 @@ public void borrarPedido(Pedido uno)
 
 
 
-/*------------------Gestion Panes Pedido-------------------*/
+/*------------------Gestion Finanzas-------------------*/
+public void actualizarAlDia()
+{
+    foreach(Pedido i in misPedidos)
+    {
+        if(i.estado.ToString().Equals(estadoPedido.pendiente.ToString())){}//&&fecha es la de ayer )
+        //cuando se crea un cliente hay que añadir un objeto deuda a cada uno para tner un fichero aparte que guarde esos datos.
+        //y aqui si se inicia el progrma y la fecha no es la de hoy entonce guardamos el dinero en deudas actualizamos la fcha al dia siguiente
+        //osea seria si la fecha no es la de mañana y estado es pendiente guardamos en deudad
+        //si no si el estado es pagado, cambiaremos fecha y no añadiremos nada nuevo.
+        //coon eso logramos es que si un cliente no paga al dia tener registrado lo que nos debe.
+        //cambiar el dato de ver cliente con deudas en vez del precio del pedido deudas totales.
+        //esto es una forma de automatizar que cuando se inicie el progrma automaticamente actualice los pedidos al proximo dia y guarde las deudas.
+    }
+}
 
 
 

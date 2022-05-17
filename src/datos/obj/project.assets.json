@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
+      "projectUniqueName": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
       "projectName": "datos",
-      "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
+      "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj",
       "packagesPath": "C:\\Users\\guly_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\obj\\",
+      "outputPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
-              "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
+            "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+              "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
             }
           }
         }
