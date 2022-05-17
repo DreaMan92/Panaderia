@@ -12,3 +12,4 @@ var view = new Vista();
 var sistema = new Gestor(RePoC, RePoP,RepoPanPedido);
 var controlador = new Controlador(view,sistema);
 controlador.Run();
+

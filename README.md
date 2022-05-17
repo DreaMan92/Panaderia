@@ -49,26 +49,29 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
 <br>
 
 # Diario
-+ ### 2 horas
++ ### inicio 03/05
++ ### 2 horas 03/05
     > Organización de modelos
     > Implementación de modelos.
-+ ### 2 horas y media 
++ ### 2 horas y media 09/05
     > Estructuración del codigo
     > Desarrollo de casos de uso
     > Inicio de controlador y gestor csv
-+ ### 2 horas
++ ### 2 horas 10/05
     > Resolviendo problemas
     > empezando gestor
-+ ### 4 horas
++ ### 4 horas 11/05
     > avanzando mucho
     >todavia falta la mitad
-+ ### 4 horas
++ ### 4 horas 12/05
     > en calse avanzado con pedidos
-+ ### 2 horas
++ ### 2 horas 13/05
     > dos horas mas en casa haciendo csv y metodos para panpedidos
-+ ### 1 horas
++ ### 1 horas 14/05
     > decidiendo como implementar subcasos de uso
-+ ### 3 horas
++ ### 3 horas 15/05
+    > avanzando corregir metodo para asignar lista de panes a pedido.
++ ### 3 horas 17/05
     > avanzando corregir metodo para asignar lista de panes a pedido.
 
 

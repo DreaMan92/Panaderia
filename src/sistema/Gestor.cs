@@ -78,6 +78,37 @@ namespace sistema
 
 // -------Gestion de Pedidos ---------------------
 
+public void actualizarMisPedidosConPedidoActualizado()
+{
+    RepoPedidos.guardar(misPedidos);
+
+}
+public void marcarAPagadoTodos()
+{
+    foreach(Pedido i in misPedidos)
+    {
+        if(i.estado.ToString().Equals(estadoPedido.pendiente.ToString())){
+            i.estado=estadoPedido.pagado;
+        }else
+        {
+            i.estado= i.estado;
+        }
+    }
+    RepoPedidos.guardar(misPedidos);
+}
+public void cambiarFechasPedidos()
+{
+    foreach(Pedido i in misPedidos)
+    {
+        if(i.fecha.ToShortDateString().Equals(undiaMas(DateTime.Today).ToShortDateString())){
+            i.fecha= i.fecha;
+        }else
+        {            
+            i.fecha=undiaMas(DateTime.Today);
+        }
+    }
+    RepoPedidos.guardar(misPedidos);
+}
 public Decimal calcularPrecioPedido(Dictionary<Pan,int> unaLista)
 {
     Decimal devolver=0;
@@ -97,7 +128,6 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
 {
    List<PanesPedido> nuevaLista = new List<PanesPedido>();
    foreach( var i in uno)
-
    {
        PanesPedido nuevo = new PanesPedido
        (
@@ -136,6 +166,19 @@ public void borrarPedido(Pedido uno)
 
 /*------------------Gestion Panes Pedido-------------------*/
 
+
+
+
+/*------------------Recursos-------------------*/
+
+public DateTime undiaMas(DateTime una)
+{
+    var otra=new DateTime(una.Year,una.Month,una.Day+1);
+    return otra;
+}
+public Pedido encontrarPedidoConPedido(Pedido uno)=> misPedidos.Find(pedido=> uno.ID.ToString().Equals(pedido.ID.ToString()));
+
+/*public List<Pedido> pedidosPendiente()=>misPedidos.FindAll(pedido => pedido.estado.ToString().Equals(estadoPedido.pendiente.ToString()));*/
 
 
     }

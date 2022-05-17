@@ -57,7 +57,7 @@ namespace datos
             List<string> data = new(){ };
             misPedidos.ForEach(Pedido =>
             {
-                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha.ToShortDateString()},{Pedido.precioPedido.ToString(CultureInfo.InvariantCulture)},{Pedido.pagado}";
+                var str =$"{Pedido.ID},{Pedido.dniCliente},{Pedido.fecha.ToShortDateString()},{Pedido.precioPedido.ToString(CultureInfo.InvariantCulture)},{Pedido.estado}";
                 data.Add(str);
             });
             File.WriteAllLines(_filePedidos, data);
@@ -77,7 +77,7 @@ namespace datos
                         dniCliente : campos[1],
                         fecha : DateTime.Parse(campos[2]),
                         precioPedido : Decimal.Parse(campos[3],CultureInfo.InvariantCulture),
-                        pagado : campos[4]
+                        estado :(estadoPedido)Enum.Parse((typeof(estadoPedido)),campos[4]) 
                     );
                     misPedidos.Add(pedido);
                 });

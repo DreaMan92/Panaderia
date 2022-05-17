@@ -46,12 +46,17 @@ namespace modelos
             this.precio = Math.Round(precio,2);
         }
         public override string ToString() =>
-        $"{tipo}  precio: {precio} \u20AC";
+        $"{tipo}  precio: {precio}\u20AC";
         public string ToCSV()=>
         $"{tipo},{precio.ToString(CultureInfo.InvariantCulture)}";
         public string ToPanesPedido()=>
         $"{tipo}";
        
+    }
+    public enum estadoPedido
+    {
+        pagado,
+        pendiente
     }
 
     public class Pedido
@@ -60,24 +65,24 @@ namespace modelos
         public string dniCliente { get; set;}
         public DateTime fecha { get; set; }
         public Decimal precioPedido { get; set; }
-        public string pagado { get; set; }
+        public estadoPedido estado { get; set; }
         public List<PanesPedido> listaDePan { get; set; } = new();
     
         public Pedido(){}     
 
-        public Pedido( Guid ID,string dniCliente, DateTime fecha, Decimal precioPedido,string pagado)
+        public Pedido( Guid ID,string dniCliente, DateTime fecha, Decimal precioPedido,estadoPedido estado)
         {
             this.ID=ID;
             this.dniCliente=dniCliente;
             this.fecha = fecha;
             this.precioPedido = Math.Round(precioPedido,2); 
-            this.pagado=pagado;          
+            this.estado=estado;          
         }   
          public override string ToString() =>
-        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}\n";
+        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
 
         public string stringParaVerCliente()=>
-        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}";
+        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Estado del pedido: {estado}";
       
     }
     public class PanesPedido
@@ -95,6 +100,20 @@ namespace modelos
         }
         public override string ToString() =>
         $"{pan.ToPanesPedido()} - {cantidad} unidades";
+    }
+
+    public class Deuda
+    {
+        public string dniCliente { get; set; }
+        public DateTime fecha { get; set; }
+        public Decimal cantidad { get; set; }
+
+        public Deuda(string dniCliente, DateTime fecha, Decimal cantidad)
+        {
+            this.dniCliente=dniCliente;
+            this.fecha=fecha;
+            this.cantidad=cantidad;
+        }
     }
    
 }
