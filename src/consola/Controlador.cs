@@ -1,14 +1,9 @@
-
+using modelos;
 using sistema;
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using modelos;
 using System.Text.RegularExpressions;
-
-
-
-
 
 
 namespace consola 
@@ -76,7 +71,8 @@ namespace consola
                 {"Ver Pedidos",verPedidos},
                 {"Añadir Pedido",aniadirPedido},
                 {"Cambiar Pedido",cambiarPedido},
-                 {"Volver atras",volverAtras}
+                {"Borrar Pedido",borrarPedidio},
+                {"Volver atras",volverAtras}
             };
             var menuPedidos = _gestionPedidos.Keys.ToList<string>();
             try
@@ -95,53 +91,98 @@ namespace consola
             try
             {
                 var dniCli = _vista.TryObtenerDatoDeTipo<string>("Introduzca dni");
-                if(_sistema.misClientes.Find(cliente => dniCli.Equals(cliente.dni))==null)
+                if (_sistema.misClientes.Find(cliente => dniCli.Equals(cliente.dni)) == null)
                 {
                     _vista.Mostrar("El dni no figura en el sistema\nPorfavor pruebe denuevo\nSi no esta registrado el dni, registre a nuevo cliente.");
-                }else{
-                    Dictionary<Pan, int> panParaLista= new Dictionary<Pan, int>();
-                   // Decimal sumaPrecio=0;
-                    Pan panNuevo;
-                    int cantidad;
-                    string fuera="";
-                    Boolean salir = false;
-                    while(!salir){
-                        _vista.LimpiarPantalla();
-                        panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan",_sistema.misProductos,"Seleciona un Pan");
-                        cantidad=_vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
-                        panParaLista.Add(panNuevo,cantidad);
-                        //sumaPrecio=sumaPrecio+(panNuevo.precio*cantidad);
-                        fuera = _vista.TryObtenerDatoDeTipo<string>("Quieres salir ( S/N )");
-                        if(fuera.Equals("s",StringComparison.InvariantCultureIgnoreCase))
+                }
+                else
+                {
+                    if (_sistema.tienePedido(dniCli))
+                    {
+                        _vista.Mostrar("Ya hay un pedido registrado con este dni.\nSi quiere modificarlo acceda a cambiar pedido.");
+                    }
+                    else
+                    {
+                        Dictionary<Pan, int> panParaLista = new Dictionary<Pan, int>();
+                        Pan panNuevo;
+                        int cantidad;
+                        string fuera = "";
+                        Boolean salir = false;
+                        while (!salir)
                         {
-                            salir=true;
-                        }  
-                    } 
-                    var ID = Guid.NewGuid();
-                    var fecha = DateTime.Today;   
-                    var precio =_sistema.calcularPrecioPedido(panParaLista); 
-                    var pagado = "false";  
-                    Pedido nuevo = new Pedido
-                    (
-                        ID:ID,
-                        dniCliente:dniCli,
-                        fecha:fecha.Date,
-                        precioPedido:precio,
-                        pagado:pagado
-                    );  
-                    
-                    _sistema.nuevoPedido(nuevo,panParaLista);
+                            _vista.LimpiarPantalla();
+                            panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan", _sistema.misProductos, "Seleciona un Pan");
+                            cantidad = _vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
+                            panParaLista.Add(panNuevo, cantidad);
+                            fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
+                            if (fuera.Equals("s", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                salir = true;
+                            }
+                        }
+                        var ID = Guid.NewGuid();
+                        var fecha = DateTime.Today;
+                        var precio = _sistema.calcularPrecioPedido(panParaLista);
+                        var pagado = "false";
+                        Pedido nuevo = new Pedido
+                        (
+                            ID: ID,
+                            dniCliente: dniCli,
+                            fecha: fecha.Date,
+                            precioPedido: precio,
+                            pagado: pagado
+                        );
+                        _sistema.nuevoPedido(nuevo, panParaLista);
+                        _vista.Mostrar("\n\nNuevo pedido registrado.\n");
+                    }
                 }
 
-            }catch{ return;}
-            finally
-            {
-                _vista.Mostrar("\n\nNuevo pedido registrado.\n");
             }
+            catch { return; }
         }
         private void cambiarPedido()
         {
+            // Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Lista de Pedidos",_sistema.misPedidos,"Selecciona pedido que quieras cambiar");
+            // Dictionary<Pan, int> panParaLista= new Dictionary<Pan, int>();
+            // Pan panNuevo;
+            // int cantidad;
+            // string fuera="";
+            // Boolean salir = false;
+            // while(!salir)
+            // {
+            //     _vista.LimpiarPantalla();
+            //     panNuevo = _vista.TryObtenerElementoDeLista("Tipos de Pan",_sistema.misProductos,"Seleciona un Pan");
+            //     cantidad=_vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
+            //     panParaLista.Add(panNuevo,cantidad);
+            //     fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
+            //     if(fuera.Equals("s",StringComparison.InvariantCultureIgnoreCase))
+            //         {
+            //         salir=true;
+            //         }  
+            // } 
+            // var ID = Guid.NewGuid();
+            // var fecha = DateTime.Today;   
+            // var precio =_sistema.calcularPrecioPedido(panParaLista); 
+            // var pagado = "false";  
+            // Pedido otro = new Pedido
+            //     (
+            //         ID:ID,
+            //         dniCliente:dniCli,
+            //         fecha:fecha.Date,
+            //         precioPedido:precio,
+            //         pagado:pagado
+            //     );                      
+            // _sistema.nuevoPedido(nuevo,panParaLista);
+
+
+
+
             
+        }
+        private void borrarPedidio()
+        {
+            Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Pedidos registrados",_sistema.misPedidos,"Selecciona un pedido");
+            _sistema.borrarPedido(nuevo);
         }
 
         private void verPedidos()
@@ -246,8 +287,7 @@ namespace consola
                
             }
             _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas",lista);
-
-            
+  
         }
        
         public void verPedidosPorClientes()
@@ -260,11 +300,10 @@ namespace consola
             _vista.Mostrar(_sistema.pedidoDeCliente(nuevo).stringParaVerCliente()+"\n");
             _vista.Mostrar("Lista de panes\n",ConsoleColor.DarkYellow);
 
-            foreach(PanesPedido i in _sistema.misPanesPorPedido)//esta no es la lista adecuada,mejorarmetodo para que solo nos mande las que corresponden al pedido.
+            foreach(PanesPedido i in _sistema.pedidoDeCliente(nuevo).listaDePan)
             {
                 _vista.Mostrar(i.ToString()+"\n");
-            }           
-            /*_sistema.listaDePanesPorPedido(_sistema.pedidoDeCliente(nuevo))*/
+            }  
         }
         
 

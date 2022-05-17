@@ -61,23 +61,23 @@ namespace modelos
         public DateTime fecha { get; set; }
         public Decimal precioPedido { get; set; }
         public string pagado { get; set; }
-        public List<PanesPedido> listaDePan { get; set; }
+        public List<PanesPedido> listaDePan { get; set; } = new();
     
         public Pedido(){}     
 
         public Pedido( Guid ID,string dniCliente, DateTime fecha, Decimal precioPedido,string pagado)
         {
-            this.ID=Guid.NewGuid();
+            this.ID=ID;
             this.dniCliente=dniCliente;
             this.fecha = fecha;
             this.precioPedido = Math.Round(precioPedido,2); 
             this.pagado=pagado;          
         }   
          public override string ToString() =>
-        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido/100} \u20AC Pagado: {pagado}";
+        $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}";
 
         public string stringParaVerCliente()=>
-        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido/100} \u20AC Pagado: {pagado}";
+        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Pagado: {pagado}";
       
     }
     public class PanesPedido

@@ -24,7 +24,8 @@ namespace sistema
             misPedidos=RepoPedidos.leer();
             misPanesPorPedido = RepoPanPedido.leer();
             generarPanes();
-            asignarPanPedidoAPedido();
+            asignarPanPedidoAPedido();  
+ 
         }
 //----------Pan-------------------
 
@@ -54,6 +55,24 @@ namespace sistema
         misClientes.Remove(c);
         RepoClientes.guardar(misClientes);
     }
+
+    public bool tienePedido(string dni)
+    {
+        bool respuesta= false;
+        foreach(Pedido i in misPedidos)
+        {
+            if(i.dniCliente.Equals(dni));
+            respuesta = true;
+        }
+        return respuesta;
+
+    }
+    public Cliente encontrarClientePorDni(string dni)=>
+    misClientes.Find(cliente => dni.Equals(cliente.dni));
+    public Pedido pedidoDeCliente(Cliente uno)=>
+        misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
+
+
 
 
 // -------Gestion de Pedidos ---------------------
@@ -93,40 +112,29 @@ public void guardarPanespedido(Pedido p,Dictionary<Pan, int> uno)
    RepoPanPedido.guardar(misPanesPorPedido);  
 }
 public void asignarPanPedidoAPedido()
-{
-    foreach(Pedido i in misPedidos)
-    {
-        foreach(PanesPedido p in misPanesPorPedido)
+{    
+    foreach(PanesPedido i in misPanesPorPedido)
         {
-            if(p.ID.ToString().Equals(i.ID.ToString())){
-                i.listaDePan.Add(p);
-            }
+            misPedidos.Find(pedido => i.ID.ToString().Equals(pedido.ID.ToString())).listaDePan.Add(i);
         }
-    }
-
 }
 
-public Pedido pedidoDeCliente(Cliente uno)=>
-misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
-
-// public string deudaPorCliente(Cliente uno)=>
-// pedidoDeCliente(uno).precioPedido.ToString();
-/*------------------Gestion Panes Pedido-------------------*/
-public List<PanesPedido> listaDePanesPorPedido(Pedido uno) =>
-misPanesPorPedido.FindAll(panespedido => uno.ID.ToString().Equals(panespedido.ID.ToString()));
-
+public void borrarPedido(Pedido uno)
+{
+    misPanesPorPedido.RemoveAll(pedido => uno.ID.ToString().Equals(pedido.ID.ToString()));
+    misPedidos.Remove(misPedidos.Find(pedido => uno.ID.ToString().Equals(pedido.ID.ToString())));
+    RepoPanPedido.guardar(misPanesPorPedido);
+    RepoPedidos.guardar(misPedidos);
     
+}
 
 
 
 
 
 
+/*------------------Gestion Panes Pedido-------------------*/
 
-
-
-
-       
 
 
     }

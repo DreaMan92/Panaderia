@@ -76,7 +76,7 @@ namespace datos
                         ID : Guid.Parse(campos[0]),
                         dniCliente : campos[1],
                         fecha : DateTime.Parse(campos[2]),
-                        precioPedido : Decimal.Parse(campos[3]),
+                        precioPedido : Decimal.Parse(campos[3],CultureInfo.InvariantCulture),
                         pagado : campos[4]
                     );
                     misPedidos.Add(pedido);
@@ -114,7 +114,7 @@ namespace datos
                     var panesPedido = new PanesPedido
                     (
                         ID : Guid.Parse(campos[0]),
-                        pan :new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2])),
+                        pan :new Pan((tipoDePan)Enum.Parse((typeof(tipoDePan)), campos[1]),Decimal.Parse(campos[2],CultureInfo.InvariantCulture)),
                         cantidad : int.Parse(campos[3])
                     );
                     misPanesPorPedido.Add(panesPedido);
