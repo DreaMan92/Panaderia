@@ -106,14 +106,16 @@ namespace modelos
     {
         public string dniCliente { get; set; }
         public DateTime fecha { get; set; }
-        public Decimal cantidad { get; set; }
+        public Decimal importe { get; set; }
 
-        public Deuda(string dniCliente, DateTime fecha, Decimal cantidad)
+        public Deuda(string dniCliente, DateTime fecha, Decimal importe)
         {
             this.dniCliente=dniCliente;
             this.fecha=fecha;
-            this.cantidad=cantidad;
+            this.importe=importe;
         }
+        public override string ToString() =>
+        $"Cliente con dni: {dniCliente} a fecha de {fecha} debe {importe}";
     }
    
 }

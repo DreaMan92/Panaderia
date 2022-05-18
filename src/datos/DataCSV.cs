@@ -125,5 +125,41 @@ namespace datos
         }    
 
     }
+    /*-----------------Data Deudas-------------------------*/
+    public class DeudasCSV : IData<Deuda>
+    {
+        string _fileDeudas =  "../../RepositoriosCSV/deudas.csv";
+
+         public void guardar(List<Deuda> misDeudas)
+        {
+            List<string> data = new(){ };
+            misDeudas.ForEach(deuda =>
+            {
+                var str =$"{deuda.dniCliente},{deuda.fecha.ToShortDateString()},{deuda.importe.ToString(CultureInfo.InvariantCulture)}";
+                data.Add(str);
+            });
+            File.WriteAllLines(_fileDeudas, data);
+
+        }
+
+         public List<Deuda> leer()
+        {
+            List<Deuda> misDeudas = new();
+                var data = File.ReadAllLines(_fileDeudas).Where(row => row.Length > 0).ToList();
+                data.ForEach(row =>
+                {
+                    var campos = row.Split(",");
+                    var deuda = new Deuda
+                    (
+                        dniCliente : campos[0],
+                        fecha : DateTime.Parse(campos[1]),
+                        importe : Decimal.Parse(campos[2],CultureInfo.InvariantCulture)
+                    );
+                    misDeudas.Add(deuda);
+                });
+                return misDeudas;            
+        }    
+
+    }
     
 }

@@ -406,7 +406,8 @@ namespace consola
         //opcion liquidar deudas, Por pedido o todos los pedidos
 
 
-    //Añadir en el gestro un metodo que inicie cuando se inicia el progrma que si la fecha de hoy es mayor todos los pedidos, la deuda se guarda en un repositorio aparte para tener control a largo plazo.
+    //Añadir en el gestro un metodo que inicie cuando se inicia el progrma que si la fecha de hoy es mayor todos los pedidos,
+    // la deuda se guarda en un repositorio aparte para tener control a largo plazo.
 
 
 
