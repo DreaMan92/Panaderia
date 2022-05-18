@@ -8,7 +8,8 @@ namespace consola
 {
     public class Vista
     {
-        public Vista(){
+        public Vista()
+        {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             //con esto conseguimos que reconozca el simbolo del euro al mostrar en consola.
         }

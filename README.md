@@ -37,6 +37,14 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
 # Problemas
 + Decidir como crear mi pedidos, a psear de tener un lista de panes que forman para de lo atributos del objeto pedio, ovy a tratar las lista de panes con un fichero aparte. Usando un 
 
++   cuando se crea un cliente hay que añadir un objeto deuda a cada uno para tner un fichero aparte que guarde esos datos.
+    y aqui si se inicia el progrma y la fecha no es la de hoy entonce guardamos el dinero en deudas actualizamos la fecha al dia siguiente
+    osea seria si la fecha no es la de mañana y estado es pendiente guardamos en deudad
+    si no si el estado es pagado, cambiaremos fecha y no añadiremos nada nuevo.
+    coon eso logramos es que si un cliente no paga al dia tener registrado lo que nos debe.
+    cambiar el dato de ver cliente con deudas en vez del precio del pedido deudas totales.
+    esto es una forma de automatizar que cuando se inicie el programa automaticamente actualice los pedidos al proximo dia y guarde las deudas.
+
 <br>
 <br>
 <br>

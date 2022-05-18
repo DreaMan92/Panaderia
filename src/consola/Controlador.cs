@@ -25,7 +25,7 @@ namespace consola
         public Controlador(Vista vista, Gestor logicaNegocio)
         {
             _vista = vista;
-            _sistema=logicaNegocio;
+            _sistema = logicaNegocio;
             _casosdeUso = new Dictionary<string, Action>()
             {
                 {"Gestión de Pedidos",gestionPedidos},
@@ -41,31 +41,31 @@ namespace consola
             _vista.LimpiarPantalla();
             var menu = _casosdeUso.Keys.ToList<string>();
 
-            while(true)
-            try
-            {
-                _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Panadería Biskôte",menu,"Selecciona una opción ");
-                _vista.Mostrar("");
-                _casosdeUso[key].Invoke();
-                _vista.MostrarYReturn("Pulsa <Return> para continuar");
-            }
-            catch{ return; }
+            while (true)
+                try
+                {
+                    _vista.LimpiarPantalla();
+                    var key = _vista.TryObtenerElementoDeLista("Panadería Biskôte", menu, "Selecciona una opción ");
+                    _vista.Mostrar("");
+                    _casosdeUso[key].Invoke();
+                    _vista.MostrarYReturn("Pulsa <Return> para continuar");
+                }
+                catch { return; }
         }
-    //-----------Casos De Uso-----------------
-    // --------------Recursos---------------------
+        //-----------Casos De Uso-----------------
+        // --------------Recursos---------------------
         public void salir()
         {
             var key = "fin";
-             _vista.Mostrar("Gracias\n\nHasta la próxima!!\n\n");
+            _vista.Mostrar("Gracias\n\nHasta la próxima!!\n\n");
 
-           _casosdeUso[key].Invoke();
+            _casosdeUso[key].Invoke();
         }
-         public void volverAtras(){}
+        public void volverAtras() { }
 
 
 
-    // -------Gestion de Pedidos ---------------------
+        // -------Gestion de Pedidos ---------------------
         private void gestionPedidos()
         {
             _gestionPedidos = new Dictionary<string, Action>()
@@ -81,28 +81,30 @@ namespace consola
             var menuPedidos = _gestionPedidos.Keys.ToList<string>();
             try
             {
-                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Gestión de Pedidos",menuPedidos,"Selecciona una opción ");
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Gestión de Pedidos", menuPedidos, "Selecciona una opción ");
                 _vista.Mostrar("");
                 _gestionPedidos[key].Invoke();
 
             }
             catch { return; }
         }
-         private void verPedidos()
+        private void verPedidos()
         {
-            foreach(Pedido i in _sistema.misPedidos){
+            foreach (Pedido i in _sistema.misPedidos)
+            {
                 _vista.Mostrar(i.ToString());
-                foreach(PanesPedido j in i.listaDePan){
-                     _vista.Mostrar("          "+j.ToString());
+                foreach (PanesPedido j in i.listaDePan)
+                {
+                    _vista.Mostrar("          " + j.ToString());
 
                 }
             }
             _vista.Mostrar("\n");
         }
-         public void marcarPedidoDiaSiguiente()
+        public void marcarPedidoDiaSiguiente()
         {
-             _marcarPedidos = new Dictionary<string, Action>()
+            _marcarPedidos = new Dictionary<string, Action>()
             {
                 {"Marcar un pedido como pagado",marcarPedidoPagado},
                 {"Marcar todos los pedidos como pagados",marcarAPagadoTodos}
@@ -110,40 +112,42 @@ namespace consola
             var menuMarcar = _marcarPedidos.Keys.ToList<String>();
             try
             {
-                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Opciones para Pedido",menuMarcar,"Selecciona una opción ");
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Opciones para Pedido", menuMarcar, "Selecciona una opción ");
                 _vista.Mostrar("");
                 _marcarPedidos[key].Invoke();
 
-            }catch{ return; }
-        }
-        
-        public void marcarPedidoPagado()        
-        {
-            Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos",_sistema.misPedidos,"Seleciona una pedido");
-            if(nuevo.estado.ToString().Equals(estadoPedido.pagado.ToString()))
-            {
-                _vista.Mostrar("Esta pedido ya esta pagado!!\nPorfavor, selecciona otro",ConsoleColor.Red);
-            }else
-            {
-                nuevo.estado=estadoPedido.pagado;
             }
-            
+            catch { return; }
+        }
+
+        public void marcarPedidoPagado()
+        {
+            Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos", _sistema.misPedidos, "Seleciona una pedido");
+            if (nuevo.estado.ToString().Equals(estadoPedido.pagado.ToString()))
+            {
+                _vista.Mostrar("Esta pedido ya esta pagado!!\nPorfavor, selecciona otro", ConsoleColor.Red);
+            }
+            else
+            {
+                nuevo.estado = estadoPedido.pagado;
+            }
+
             _sistema.actualizarMisPedidosConPedidoActualizado();
 
-             _vista.Mostrar("\n\nPedido actualizado.\n", ConsoleColor.DarkYellow);           
+            _vista.Mostrar("\n\nPedido actualizado.\n", ConsoleColor.DarkYellow);
 
         }
         public void marcarAPagadoTodos()
         {
             _sistema.marcarAPagadoTodos();
-            _vista.Mostrar("\n\nPedidos actualizados. \n", ConsoleColor.DarkYellow); 
+            _vista.Mostrar("\n\nPedidos actualizados. \n", ConsoleColor.DarkYellow);
         }
         //Si quieren el mismo pedido para el dia siguiente, cambia la fecha de los pedidos que se quiera para el dia siguiente con opcion de cambiar todoas a la vez.
         //que salte un mensaje antes de validar que diga si hay algun pedido sin pagar, añadir pedidos de excepcion que panagan a la semana,por jemeplo o al mes.crear repositorio de deudas.
         public void validarPedidoDiaSiguiente()
         {
-             _validarPedidos = new Dictionary<string, Action>()
+            _validarPedidos = new Dictionary<string, Action>()
             {
                 {"Validar un pedido para el dia siguiente",cambiarFechaPedido},
                 {"Validar todos los pedidos para el dia siguiente",cambiarFechasPedidos}
@@ -151,32 +155,34 @@ namespace consola
             var menuValidar = _validarPedidos.Keys.ToList<String>();
             try
             {
-                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Opciones para Pedido",menuValidar,"Selecciona una opción ");
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Opciones para Pedido", menuValidar, "Selecciona una opción ");
                 _vista.Mostrar("");
                 _validarPedidos[key].Invoke();
 
-            }catch{ return; }
+            }
+            catch { return; }
         }
         public void cambiarFechaPedido()
         {
-            Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos",_sistema.misPedidos,"Seleciona una pedido");
-            if(_sistema.undiaMas(nuevo.fecha).ToShortDateString().Equals(DateTime.Today.ToShortDateString()))
+            Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos", _sistema.misPedidos, "Seleciona una pedido");
+            if (_sistema.undiaMas(nuevo.fecha).ToShortDateString().Equals(DateTime.Today.ToShortDateString()))
             {
-                _vista.Mostrar("Esta pedido ya es para mañana!!\nPorfavor, selecciona otro",ConsoleColor.Red);
-            }else
+                _vista.Mostrar("Esta pedido ya es para mañana!!\nPorfavor, selecciona otro", ConsoleColor.Red);
+            }
+            else
             {
                 nuevo.fecha = _sistema.undiaMas(DateTime.Today);
             }
-            
+
             _sistema.actualizarMisPedidosConPedidoActualizado();
 
-            _vista.Mostrar("\n\nPedido actualizado para el dia siguiente.\n", ConsoleColor.DarkYellow); 
+            _vista.Mostrar("\n\nPedido actualizado para el dia siguiente.\n", ConsoleColor.DarkYellow);
         }
         public void cambiarFechasPedidos()
         {
-             _sistema.cambiarFechasPedidos();
-             _vista.Mostrar("\n\nPedidos actualizados para el dia siguiente.\n", ConsoleColor.DarkYellow);
+            _sistema.cambiarFechasPedidos();
+            _vista.Mostrar("\n\nPedidos actualizados para el dia siguiente.\n", ConsoleColor.DarkYellow);
         }
 
         private void aniadirPedido()
@@ -280,13 +286,13 @@ namespace consola
         }
         private void borrarPedidio()
         {
-            Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Pedidos registrados",_sistema.misPedidos,"Selecciona un pedido");
+            Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Pedidos registrados", _sistema.misPedidos, "Selecciona un pedido");
             _sistema.borrarPedido(nuevo);
-            _vista.Mostrar("\n\nPedido borrado\n",ConsoleColor.DarkYellow);
+            _vista.Mostrar("\n\nPedido borrado\n", ConsoleColor.DarkYellow);
         }
 
 
-    // -------Gestion de Clientes ---------------------
+        // -------Gestion de Clientes ---------------------
 
 
         private void gestionClientes()
@@ -301,8 +307,8 @@ namespace consola
             var menuClientes = _gestionClientes.Keys.ToList<string>();
             try
             {
-                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Gestión de Clientes",menuClientes,"Selecciona una opción ");
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Gestión de Clientes", menuClientes, "Selecciona una opción ");
                 _vista.Mostrar("");
                 _gestionClientes[key].Invoke();
             }
@@ -336,7 +342,7 @@ namespace consola
         public void borrarCliente()
         {
             Cliente c;
-            c = _vista.TryObtenerElementoDeLista("Clientes registrados",_sistema.misClientes, "Selecciona un cliente para borrar sus datos");
+            c = _vista.TryObtenerElementoDeLista("Clientes registrados", _sistema.misClientes, "Selecciona un cliente para borrar sus datos");
             _sistema.borrarCliente(c);
 
         }
@@ -345,127 +351,113 @@ namespace consola
             _verClientes = new Dictionary<string, Action>()
             {
                 {"Ver datos de clientes",verDatosPorCliente},
-                {"Ver clientes con deudas",verDeudasPorCliente},
+                {"Ver clientes con deudas pendientes",verDeudasPorCliente},
+                {"Ver clientes con deudas Totales",verTotalDeudasPorCliente},
                 {"Ver pedidos por cliente",verPedidosPorClientes}
             };
             var menuClientes2 = _verClientes.Keys.ToList<String>();
             try
             {
-                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Clientes registrados",menuClientes2,"Selecciona una cliente ");
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Clientes registrados", menuClientes2, "Selecciona una cliente ");
                 _vista.Mostrar("");
                 _verClientes[key].Invoke();
 
-            }catch{ return; }
+            }
+            catch { return; }
 
         }
         public void verDatosPorCliente()
         {
-           _vista.MostrarListaEnumerada<Cliente>("Lista de Clientes",_sistema.misClientes);
+            _vista.MostrarListaEnumerada<Cliente>("Lista de Clientes", _sistema.misClientes);
 
         }
         public void verDeudasPorCliente()
         {
             List<string> lista = new List<string>();
-            foreach(Cliente i in _sistema.misClientes){
-                if(_sistema.pedidoDeCliente(i) != null &&_sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
+            foreach (Cliente i in _sistema.misClientes)
+            {
+                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
                 {
-                    lista.Add( i.verClientesConPedido()+"Deuda a pagar: "+_sistema.pedidoDeCliente(i).precioPedido+" \u20AC " );
-                }else if(_sistema.pedidoDeCliente(i) != null )
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + _sistema.asignarDeudaPorCliente(i) + " \u20AC ");
+                }
+                else if (_sistema.pedidoDeCliente(i) != null)
                 {
-                    lista.Add( i.verClientesConPedido()+"Deuda a pagar:  \u20AC");
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar:  \u20AC");
                 }
 
             }
-            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas",lista);
+            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas", lista);
+
+        }
+        public void verTotalDeudasPorCliente()
+        {
+            List<string> lista = new List<string>();
+            foreach (Cliente i in _sistema.misClientes)
+            {
+                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
+                {
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + (_sistema.asignarDeudaPorCliente(i) + _sistema.pedidoDeCliente(i).precioPedido) + " \u20AC ");
+                }
+                else if (_sistema.pedidoDeCliente(i) != null)
+                {
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar:  \u20AC");
+                }
+
+            }
+            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas", lista);
 
         }
 
         public void verPedidosPorClientes()
         {
             Cliente nuevo;
-            nuevo=_vista.TryObtenerElementoDeLista("Clientes",_sistema.misClientes,"Selecciona un cliente");
-            _vista.Mostrar("\nCliente",ConsoleColor.DarkYellow);
+            nuevo = _vista.TryObtenerElementoDeLista("Clientes", _sistema.misClientes, "Selecciona un cliente");
+            _vista.Mostrar("\nCliente", ConsoleColor.DarkYellow);
             _vista.Mostrar(nuevo.ToString());
-            _vista.Mostrar("\nPedido: ",ConsoleColor.DarkYellow);
-            _vista.Mostrar(_sistema.pedidoDeCliente(nuevo).stringParaVerCliente()+"\n");
-            _vista.Mostrar("Lista de panes\n",ConsoleColor.DarkYellow);
+            _vista.Mostrar("\nPedido: ", ConsoleColor.DarkYellow);
+            _vista.Mostrar(_sistema.pedidoDeCliente(nuevo).stringParaVerCliente() + "\n");
+            _vista.Mostrar("Lista de panes\n", ConsoleColor.DarkYellow);
 
-            foreach(PanesPedido i in _sistema.pedidoDeCliente(nuevo).listaDePan)
+            foreach (PanesPedido i in _sistema.pedidoDeCliente(nuevo).listaDePan)
             {
-                _vista.Mostrar(i.ToString()+"\n");
+                _vista.Mostrar(i.ToString() + "\n");
             }
             _vista.Mostrar("\n");
         }
-       
-
-    // -------Gestion de Finanzas ---------------------
 
 
-        private void gestionFinanzas(){}
+        // -------Gestion de Finanzas ---------------------
+
+
+        private void gestionFinanzas()
+        {
+            _gestionFinanzas = new Dictionary<string, Action>()
+            {
+                {"Liquidar deudas por cliente",liquidarDeudasPorCliente},
+                {"Ver deudas diarias por cliente",verDeudasPorCliente},
+                {"Ver deudas pendientes Totales por cliente",verTotalDeudasPorCliente}
+              
+            };
+            var menuFinanzas = _gestionFinanzas.Keys.ToList<String>();
+            try
+            {
+                _vista.LimpiarPantalla();
+                var key = _vista.TryObtenerElementoDeLista("Gestion de Finanzas", menuFinanzas, "Selecciona una opción");
+                _vista.Mostrar("");
+                _gestionFinanzas[key].Invoke();
+
+            }
+            catch { return; }
+        }
+        public void liquidarDeudasPorCliente(){}
         //opcion liquidar deudas, Por pedido o todos los pedidos
 
 
-    //Añadir en el gestro un metodo que inicie cuando se inicia el progrma que si la fecha de hoy es mayor todos los pedidos,
-    // la deuda se guarda en un repositorio aparte para tener control a largo plazo.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //Añadir en el gestro un metodo que inicie cuando se inicia el progrma que si la fecha de hoy es mayor todos los pedidos,
+        // la deuda se guarda en un repositorio aparte para tener control a largo plazo.
 
 
     }
-
-
-
-
-
 
 }
