@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 
 namespace consola
@@ -196,7 +197,7 @@ namespace consola
                 }
                 else
                 {
-                    if (_sistema.tienePedido(dniCli))
+                    if (_sistema.clienteTienePedido(dniCli))
                     {
                         _vista.Mostrar("Ya hay un pedido registrado con este dni.\nSi quiere modificarlo acceda a cambiar pedido.");
                     }
@@ -351,8 +352,8 @@ namespace consola
             _verClientes = new Dictionary<string, Action>()
             {
                 {"Ver datos de clientes",verDatosPorCliente},
-                {"Ver clientes con deudas pendientes",verDeudasPorCliente},
-                {"Ver clientes con deudas Totales",verTotalDeudasPorCliente},
+                {"Ver clientes con precio del pedido diario",verDeudasDiariasPorCliente},
+                {"Ver clientes con deudas pendientes",verTotalDeudasPorCliente},
                 {"Ver pedidos por cliente",verPedidosPorClientes}
             };
             var menuClientes2 = _verClientes.Keys.ToList<String>();
@@ -372,14 +373,14 @@ namespace consola
             _vista.MostrarListaEnumerada<Cliente>("Lista de Clientes", _sistema.misClientes);
 
         }
-        public void verDeudasPorCliente()
+        public void verDeudasDiariasPorCliente()
         {
             List<string> lista = new List<string>();
             foreach (Cliente i in _sistema.misClientes)
             {
                 if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + _sistema.asignarDeudaPorCliente(i) + " \u20AC ");
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + _sistema.pedidoDeCliente(i).precioPedido + " \u20AC ");
                 }
                 else if (_sistema.pedidoDeCliente(i) != null)
                 {
@@ -397,7 +398,7 @@ namespace consola
             {
                 if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + (_sistema.asignarDeudaPorCliente(i) + _sistema.pedidoDeCliente(i).precioPedido) + " \u20AC ");
+                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + (_sistema.asignarDeudaSPorCliente2(i) + _sistema.pedidoDeCliente(i).precioPedido) + " \u20AC ");
                 }
                 else if (_sistema.pedidoDeCliente(i) != null)
                 {
@@ -435,7 +436,7 @@ namespace consola
             _gestionFinanzas = new Dictionary<string, Action>()
             {
                 {"Liquidar deudas por cliente",liquidarDeudasPorCliente},
-                {"Ver deudas diarias por cliente",verDeudasPorCliente},
+                {"Ver deudas diarias por cliente",verDeudasDiariasPorCliente},
                 {"Ver deudas pendientes Totales por cliente",verTotalDeudasPorCliente}
               
             };
@@ -450,7 +451,37 @@ namespace consola
             }
             catch { return; }
         }
-        public void liquidarDeudasPorCliente(){}
+        public void liquidarDeudasPorCliente()
+        {
+            Decimal dineroAPagar=0;
+            Cliente nuevo = _vista.TryObtenerElementoDeLista<Cliente>("Clientes de la Panaderia",_sistema.misClientes,"Selecciona un cliente");
+            
+            if(nuevo.deudasPendientes>0)
+            {
+                dineroAPagar= nuevo.deudasPendientes;
+                if(_sistema.pedidoDeCliente(nuevo).estado==estadoPedido.pendiente)
+                {
+                    var esto = _vista.TryObtenerDatoDeTipo<string>("\n\nQuieres añadir el pedido de hoy a la suma del dinero pendiente?? S/N\n");
+                     if (esto.Equals("s", StringComparison.InvariantCultureIgnoreCase))
+                     {
+                         dineroAPagar += _sistema.pedidoDeCliente(nuevo).precioPedido;
+                         //_sistema.pedidoDeCliente(nuevo).estado=estadoPedido.pagado;
+
+                     }
+                                
+                }
+                _vista.Mostrar("\nTotal a pagar "+dineroAPagar.ToString(CultureInfo.InvariantCulture)+"\n",ConsoleColor.DarkYellow);
+
+            }else
+            {
+                _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\nPara ver quienes tienen deudas pendientes.\nGracias\n",ConsoleColor.Red);
+            }
+            // _sistema.actualizarMisPedidosConPedidoActualizado();
+            // _sistema.actualizarMisDeudasConPedidoActualizado();
+            // if(_sistema.pedidoDeCliente(nuevo))
+    
+
+        }
         //opcion liquidar deudas, Por pedido o todos los pedidos
 
 

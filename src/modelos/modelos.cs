@@ -10,6 +10,7 @@ namespace modelos
         public string dni { get; set; }
         public string telefono { get; set; }
         public string pueblo { get; set; }
+        public Decimal deudasPendientes { get; set;} = new();
         public Cliente() { }
         public Cliente(string nombre, string apellido, string dni, string telefono, string pueblo)
         {

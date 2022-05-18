@@ -45,6 +45,7 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
     cambiar el dato de ver cliente con deudas en vez del precio del pedido deudas totales.
     esto es una forma de automatizar que cuando se inicie el programa automaticamente actualice los pedidos al proximo dia y guarde las deudas.
 
+> comprobar que cuando hago pruebas y pongo el pedido a pagado luego no me muestra nada al ver deudas comprobar 
 <br>
 <br>
 <br>
@@ -81,6 +82,8 @@ Hay algunos que realizan sus pedidos de manera rutinaria, es decir una cantidad 
     > avanzando corregir metodo para asignar lista de panes a pedido.
 + ### 3 horas 17/05
     > avanzando corregir metodo para asignar lista de panes a pedido.
++ ### 2 horas 17/05
+    > en clase durante el dia avanzando con la gestion de finanzas
 
 
 

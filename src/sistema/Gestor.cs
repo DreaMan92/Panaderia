@@ -31,6 +31,7 @@ namespace sistema
             generarPanes();
             asignarPanPedidoAPedido();
             actualizarAlDia();
+            asignarDeudasPendientes();
 
 
         }
@@ -64,7 +65,7 @@ namespace sistema
             RepoClientes.guardar(misClientes);
         }
 
-        public bool tienePedido(string dni)
+        public bool clienteTienePedido(string dni)
         {
             bool respuesta = false;
             foreach (Pedido i in misPedidos)
@@ -202,7 +203,24 @@ namespace sistema
             RepoPedidos.guardar(misPedidos);
 
         }
-        public Decimal asignarDeudaPorCliente(Cliente uno) => misDeudas.Find(deuda => uno.dni.Equals(deuda.dniCliente)).importe;
+        
+        public List<Deuda> asignarDeudaSPorCliente(Cliente uno) => misDeudas.FindAll(deuda => uno.dni.Equals(deuda.dniCliente));
+
+        public Decimal asignarDeudaSPorCliente2(Cliente uno)
+        {
+            Decimal devolver=0;
+            foreach(Deuda i in asignarDeudaSPorCliente(uno))
+            {
+                devolver += i.importe;
+            }
+            return devolver;
+           
+        }
+         public void actualizarMisDeudasConPedidoActualizado()
+        {
+            RepoDeudas.guardar(misDeudas);
+
+        }
 
       
 
@@ -215,6 +233,20 @@ namespace sistema
             return otra;
         }
         public Pedido encontrarPedidoConPedido(Pedido uno) => misPedidos.Find(pedido => uno.ID.ToString().Equals(pedido.ID.ToString()));
+
+        public void asignarDeudasPendientes()
+        {
+            foreach(Cliente i in misClientes)
+            {
+                foreach(Deuda j in misDeudas)
+                {
+                    if(j.dniCliente==i.dni)
+                    {
+                        i.deudasPendientes=j.importe;
+                    }
+                }
+            }
+        }
 
 
     }
