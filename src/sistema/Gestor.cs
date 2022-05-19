@@ -78,8 +78,13 @@ namespace sistema
             return respuesta;
 
         }
+
+        // public bool clienteTienePedido(string dni)
+        //     => misPedidos.All(pedido => pedido.dniCliente == dni); 
+        // cristian
         public Cliente encontrarClientePorDni(string dni) =>
         misClientes.Find(cliente => dni.Equals(cliente.dni));
+
         public Pedido pedidoDeCliente(Cliente uno) =>
             misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
 
@@ -216,24 +221,17 @@ namespace sistema
             return devolver;
            
         }
+
+        // public Decimal asignarDeudaSPorCliente2(Cliente uno)
+        //     => asignarDeudaSPorCliente(uno).Select(x => x.importe).Sum();
+        // cristian
+
+      
          public void actualizarMisDeudasConPedidoActualizado()
         {
             RepoDeudas.guardar(misDeudas);
 
         }
-
-      
-
-
-        /*------------------Recursos-------------------*/
-
-        public DateTime undiaMas(DateTime una)
-        {
-            var otra = new DateTime(una.Year, una.Month, una.Day + 1);
-            return otra;
-        }
-        public Pedido encontrarPedidoConPedido(Pedido uno) => misPedidos.Find(pedido => uno.ID.ToString().Equals(pedido.ID.ToString()));
-
         public void asignarDeudasPendientes()
         {
             foreach(Cliente i in misClientes)
@@ -242,12 +240,21 @@ namespace sistema
                 {
                     if(j.dniCliente==i.dni)
                     {
-                        i.deudasPendientes=j.importe;
+                        i.deudasPendientes+=j.importe;
                     }
                 }
             }
         }
+        public void borrarDeudas(Cliente uno)=>       
+        misDeudas.RemoveAll(deuda=> uno.dni == deuda.dniCliente);
 
+
+        /*------------------Recursos-------------------*/
+
+        public DateTime undiaMas(DateTime una)
+        => new DateTime(una.Year, una.Month, una.Day + 1);
+
+        public Pedido encontrarPedidoConPedido(Pedido uno) => misPedidos.Find(pedido => uno.ID.ToString().Equals(pedido.ID.ToString()));
 
     }
 }

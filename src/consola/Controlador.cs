@@ -35,7 +35,7 @@ namespace consola
                 {"Salir y Cerrar aplicación",salir}
             };
         }
-        // === Ciclo de la aplicación ===
+// =========== Ciclo de la aplicación ==========
 
         public void Run()
         {
@@ -53,8 +53,8 @@ namespace consola
                 }
                 catch { return; }
         }
-        //-----------Casos De Uso-----------------
-        // --------------Recursos---------------------
+//----------------------Casos De Uso-----------------
+// -----------------------Recursos---------------------
         public void salir()
         {
             var key = "fin";
@@ -66,7 +66,7 @@ namespace consola
 
 
 
-        // -------Gestion de Pedidos ---------------------
+// -------------------Gestion de Pedidos ---------------------
         private void gestionPedidos()
         {
             _gestionPedidos = new Dictionary<string, Action>()
@@ -127,16 +127,18 @@ namespace consola
             Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos", _sistema.misPedidos, "Seleciona una pedido");
             if (nuevo.estado.ToString().Equals(estadoPedido.pagado.ToString()))
             {
-                _vista.Mostrar("Esta pedido ya esta pagado!!\nPorfavor, selecciona otro", ConsoleColor.Red);
+                _vista.Mostrar("\nEste pedido ya esta pagado!!\nPorfavor, selecciona otro", ConsoleColor.Red);
             }
             else
             {
                 nuevo.estado = estadoPedido.pagado;
+                _vista.Mostrar("\n\nPedido actualizado.\n", ConsoleColor.DarkYellow);
+                _sistema.actualizarMisPedidosConPedidoActualizado();
             }
 
-            _sistema.actualizarMisPedidosConPedidoActualizado();
+            
 
-            _vista.Mostrar("\n\nPedido actualizado.\n", ConsoleColor.DarkYellow);
+           
 
         }
         public void marcarAPagadoTodos()
@@ -144,8 +146,7 @@ namespace consola
             _sistema.marcarAPagadoTodos();
             _vista.Mostrar("\n\nPedidos actualizados. \n", ConsoleColor.DarkYellow);
         }
-        //Si quieren el mismo pedido para el dia siguiente, cambia la fecha de los pedidos que se quiera para el dia siguiente con opcion de cambiar todoas a la vez.
-        //que salte un mensaje antes de validar que diga si hay algun pedido sin pagar, añadir pedidos de excepcion que panagan a la semana,por jemeplo o al mes.crear repositorio de deudas.
+
         public void validarPedidoDiaSiguiente()
         {
             _validarPedidos = new Dictionary<string, Action>()
@@ -167,18 +168,18 @@ namespace consola
         public void cambiarFechaPedido()
         {
             Pedido nuevo = _vista.TryObtenerElementoDeLista("Lista de Pedidos", _sistema.misPedidos, "Seleciona una pedido");
-            if (_sistema.undiaMas(nuevo.fecha).ToShortDateString().Equals(DateTime.Today.ToShortDateString()))
+            if (nuevo.fecha.ToShortDateString().Equals(_sistema.undiaMas(DateTime.Today).ToShortDateString()))
             {
-                _vista.Mostrar("Esta pedido ya es para mañana!!\nPorfavor, selecciona otro", ConsoleColor.Red);
+                _vista.Mostrar("\nEste pedido ya es para mañana!!\nPorfavor, selecciona otro", ConsoleColor.Red);
             }
             else
             {
                 nuevo.fecha = _sistema.undiaMas(DateTime.Today);
+                _sistema.actualizarMisPedidosConPedidoActualizado();
+                _vista.Mostrar("\n\nPedido actualizado para el dia siguiente.\n", ConsoleColor.DarkYellow);
             }
 
-            _sistema.actualizarMisPedidosConPedidoActualizado();
-
-            _vista.Mostrar("\n\nPedido actualizado para el dia siguiente.\n", ConsoleColor.DarkYellow);
+            
         }
         public void cambiarFechasPedidos()
         {
@@ -293,7 +294,7 @@ namespace consola
         }
 
 
-        // -------Gestion de Clientes ---------------------
+// -------------------Gestion de Clientes ---------------------
 
 
         private void gestionClientes()
@@ -378,17 +379,17 @@ namespace consola
             List<string> lista = new List<string>();
             foreach (Cliente i in _sistema.misClientes)
             {
-                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
+                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado == estadoPedido.pendiente)
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + _sistema.pedidoDeCliente(i).precioPedido + " \u20AC ");
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: " + _sistema.pedidoDeCliente(i).precioPedido + " \u20AC ");
                 }
                 else if (_sistema.pedidoDeCliente(i) != null)
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar:  \u20AC");
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: 0  \u20AC");
                 }
 
             }
-            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas", lista);
+            _vista.MostrarListaEnumerada<string>("Lista de Clientes con sus Deudas diarias", lista);
 
         }
         public void verTotalDeudasPorCliente()
@@ -396,13 +397,17 @@ namespace consola
             List<string> lista = new List<string>();
             foreach (Cliente i in _sistema.misClientes)
             {
-                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado.ToString().Equals(estadoPedido.pendiente.ToString()))
+                if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado == estadoPedido.pendiente)
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar: " + (_sistema.asignarDeudaSPorCliente2(i) + _sistema.pedidoDeCliente(i).precioPedido) + " \u20AC ");
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: " + (_sistema.asignarDeudaSPorCliente2(i) + _sistema.pedidoDeCliente(i).precioPedido) + " \u20AC ");/**/
+                }
+                else if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado == estadoPedido.pagado)
+                {
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: "+_sistema.asignarDeudaSPorCliente2(i)+" \u20AC");
                 }
                 else if (_sistema.pedidoDeCliente(i) != null)
                 {
-                    lista.Add(i.verClientesConPedido() + "Deuda a pagar:  \u20AC");
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: 0 \u20AC");
                 }
 
             }
@@ -428,7 +433,7 @@ namespace consola
         }
 
 
-        // -------Gestion de Finanzas ---------------------
+// ---------------Gestion de Finanzas ---------------------
 
 
         private void gestionFinanzas()
@@ -461,25 +466,26 @@ namespace consola
                 dineroAPagar= nuevo.deudasPendientes;
                 if(_sistema.pedidoDeCliente(nuevo).estado==estadoPedido.pendiente)
                 {
-                    var esto = _vista.TryObtenerDatoDeTipo<string>("\n\nQuieres añadir el pedido de hoy a la suma del dinero pendiente?? S/N\n");
+                    var esto = _vista.TryObtenerDatoDeTipo<string>("\nQuieres añadir el pedido de hoy a la suma del dinero pendiente?? S/N\n");
                      if (esto.Equals("s", StringComparison.InvariantCultureIgnoreCase))
                      {
                          dineroAPagar += _sistema.pedidoDeCliente(nuevo).precioPedido;
-                         //_sistema.pedidoDeCliente(nuevo).estado=estadoPedido.pagado;
-
+                         _sistema.pedidoDeCliente(nuevo).estado=estadoPedido.pagado;
+                         
                      }
                                 
                 }
                 _vista.Mostrar("\nTotal a pagar "+dineroAPagar.ToString(CultureInfo.InvariantCulture)+"\n",ConsoleColor.DarkYellow);
+                _sistema.borrarDeudas(nuevo);
+                _sistema.actualizarMisDeudasConPedidoActualizado();
+                _sistema.actualizarMisPedidosConPedidoActualizado(); 
+                _vista.Mostrar("Deudas liquidadas.\nGracias.");
 
             }else
             {
                 _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\nPara ver quienes tienen deudas pendientes.\nGracias\n",ConsoleColor.Red);
             }
-            // _sistema.actualizarMisPedidosConPedidoActualizado();
-            // _sistema.actualizarMisDeudasConPedidoActualizado();
-            // if(_sistema.pedidoDeCliente(nuevo))
-    
+             
 
         }
         //opcion liquidar deudas, Por pedido o todos los pedidos
