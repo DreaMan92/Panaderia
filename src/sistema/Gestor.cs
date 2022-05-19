@@ -1,9 +1,5 @@
 ﻿using modelos;
 using datos;
-using System.Collections.Generic;
-
-
-
 
 namespace sistema
 {
@@ -78,7 +74,6 @@ namespace sistema
             return respuesta;
 
         }
-
         // public bool clienteTienePedido(string dni)
         //     => misPedidos.All(pedido => pedido.dniCliente == dni); 
         // cristian
@@ -87,8 +82,6 @@ namespace sistema
 
         public Pedido pedidoDeCliente(Cliente uno) =>
             misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
-
-
 
 
         // -------Gestion de Pedidos ---------------------
@@ -181,6 +174,7 @@ namespace sistema
         }
 
         /*------------------Gestion Finanzas-------------------*/
+
         public void actualizarAlDia()
         {
             foreach (Pedido i in misPedidos)
@@ -208,45 +202,43 @@ namespace sistema
             RepoPedidos.guardar(misPedidos);
 
         }
-        
+
         public List<Deuda> asignarDeudaSPorCliente(Cliente uno) => misDeudas.FindAll(deuda => uno.dni.Equals(deuda.dniCliente));
 
         public Decimal asignarDeudaSPorCliente2(Cliente uno)
         {
-            Decimal devolver=0;
-            foreach(Deuda i in asignarDeudaSPorCliente(uno))
+            Decimal devolver = 0;
+            foreach (Deuda i in asignarDeudaSPorCliente(uno))
             {
                 devolver += i.importe;
             }
             return devolver;
-           
-        }
 
+        }
         // public Decimal asignarDeudaSPorCliente2(Cliente uno)
         //     => asignarDeudaSPorCliente(uno).Select(x => x.importe).Sum();
         // cristian
 
-      
-         public void actualizarMisDeudasConPedidoActualizado()
+        public void actualizarMisDeudasConPedidoActualizado()
         {
             RepoDeudas.guardar(misDeudas);
 
         }
         public void asignarDeudasPendientes()
         {
-            foreach(Cliente i in misClientes)
+            foreach (Cliente i in misClientes)
             {
-                foreach(Deuda j in misDeudas)
+                foreach (Deuda j in misDeudas)
                 {
-                    if(j.dniCliente==i.dni)
+                    if (j.dniCliente == i.dni)
                     {
-                        i.deudasPendientes+=j.importe;
+                        i.deudasPendientes += j.importe;
                     }
                 }
             }
         }
-        public void borrarDeudas(Cliente uno)=>       
-        misDeudas.RemoveAll(deuda=> uno.dni == deuda.dniCliente);
+        public void borrarDeudas(Cliente uno) =>
+        misDeudas.RemoveAll(deuda => uno.dni == deuda.dniCliente);
 
 
         /*------------------Recursos-------------------*/

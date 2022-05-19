@@ -10,7 +10,7 @@ namespace modelos
         public string dni { get; set; }
         public string telefono { get; set; }
         public string pueblo { get; set; }
-        public Decimal deudasPendientes { get; set;} = new();
+        public Decimal deudasPendientes { get; set; } = new();
         public Cliente() { }
         public Cliente(string nombre, string apellido, string dni, string telefono, string pueblo)
         {
@@ -80,10 +80,10 @@ namespace modelos
             this.estado = estado;
         }
         public override string ToString() =>
-       $"Pedido:\nCliente DNI: {dniCliente} a fecha de: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
+       $"Pedido:\n\nDNI del cliente: {dniCliente} - Para el dia: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
 
         public string stringParaVerCliente() =>
-        $"A fecha de: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Estado del pedido: {estado}";
+        $"Para el dia: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Estado del pedido: {estado}";
 
     }
     public class PanesPedido

@@ -1,11 +1,6 @@
 using modelos;
 using sistema;
-using System.Linq;
-using System.Collections.Generic;
-using System;
-using System.Text.RegularExpressions;
 using System.Globalization;
-
 
 namespace consola
 {
@@ -35,7 +30,7 @@ namespace consola
                 {"Salir y Cerrar aplicación",salir}
             };
         }
-// =========== Ciclo de la aplicación ==========
+        // =========== Ciclo de la aplicación ==========
 
         public void Run()
         {
@@ -53,8 +48,9 @@ namespace consola
                 }
                 catch { return; }
         }
-//----------------------Casos De Uso-----------------
-// -----------------------Recursos---------------------
+        //----------------------Casos De Uso-----------------
+
+        // -----------------------Recursos---------------------
         public void salir()
         {
             var key = "fin";
@@ -66,7 +62,7 @@ namespace consola
 
 
 
-// -------------------Gestion de Pedidos ---------------------
+        // -------------------Gestion de Pedidos ---------------------
         private void gestionPedidos()
         {
             _gestionPedidos = new Dictionary<string, Action>()
@@ -137,10 +133,6 @@ namespace consola
                 _sistema.actualizarMisPedidosConPedidoActualizado();
             }
 
-            
-
-           
-
         }
         public void marcarAPagadoTodos()
         {
@@ -181,7 +173,7 @@ namespace consola
                 _vista.Mostrar("\n\nPedido actualizado para el dia siguiente.\n", ConsoleColor.DarkYellow);
             }
 
-            
+
         }
         public void cambiarFechasPedidos()
         {
@@ -296,7 +288,7 @@ namespace consola
         }
 
 
-// -------------------Gestion de Clientes ---------------------
+        // -------------------Gestion de Clientes ---------------------
 
 
         private void gestionClientes()
@@ -406,7 +398,7 @@ namespace consola
                 }
                 else if (_sistema.pedidoDeCliente(i) != null && _sistema.pedidoDeCliente(i).estado == estadoPedido.pagado)
                 {
-                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: "+_sistema.asignarDeudaSPorCliente2(i)+" \u20AC");
+                    lista.Add(i.verClientesConPedido() + " - Deuda a pagar: " + _sistema.asignarDeudaSPorCliente2(i) + " \u20AC");
                 }
                 else if (_sistema.pedidoDeCliente(i) != null)
                 {
@@ -436,7 +428,7 @@ namespace consola
         }
 
 
-// ---------------Gestion de Finanzas ---------------------
+        // ---------------Gestion de Finanzas ---------------------
 
 
         private void gestionFinanzas()
@@ -447,7 +439,7 @@ namespace consola
                 {"Ver deudas diarias por cliente",verDeudasDiariasPorCliente},
                 {"Ver deudas pendientes Totales por cliente",verTotalDeudasPorCliente},
                 {"Volver atras",volverAtras}
-              
+
             };
             var menuFinanzas = _gestionFinanzas.Keys.ToList<String>();
             try
@@ -462,42 +454,37 @@ namespace consola
         }
         public void liquidarDeudasPorCliente()
         {
-            Decimal dineroAPagar=0;
-            Cliente nuevo = _vista.TryObtenerElementoDeLista<Cliente>("Clientes de la Panaderia",_sistema.misClientes,"Selecciona un cliente");
-            
-            if(nuevo.deudasPendientes>0)
+            Decimal dineroAPagar = 0;
+            Cliente nuevo = _vista.TryObtenerElementoDeLista<Cliente>("Clientes de la Panaderia", _sistema.misClientes, "Selecciona un cliente");
+
+            if (nuevo.deudasPendientes > 0)
             {
-                dineroAPagar= nuevo.deudasPendientes;
-                if(_sistema.pedidoDeCliente(nuevo).estado==estadoPedido.pendiente)
+                dineroAPagar = nuevo.deudasPendientes;
+                if (_sistema.pedidoDeCliente(nuevo).estado == estadoPedido.pendiente)
                 {
                     var esto = _vista.TryObtenerDatoDeTipo<string>("\nQuieres añadir el pedido de hoy a la suma del dinero pendiente?? S/N\n");
-                     if (esto.Equals("s", StringComparison.InvariantCultureIgnoreCase))
-                     {
-                         dineroAPagar += _sistema.pedidoDeCliente(nuevo).precioPedido;
-                         _sistema.pedidoDeCliente(nuevo).estado=estadoPedido.pagado;
-                         
-                     }
-                                
+                    if (esto.Equals("s", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        dineroAPagar += _sistema.pedidoDeCliente(nuevo).precioPedido;
+                        _sistema.pedidoDeCliente(nuevo).estado = estadoPedido.pagado;
+
+                    }
+
                 }
-                _vista.Mostrar("\nTotal a pagar "+dineroAPagar.ToString(CultureInfo.InvariantCulture)+"\n",ConsoleColor.DarkYellow);
+                _vista.Mostrar("\nTotal a pagar " + dineroAPagar.ToString(CultureInfo.InvariantCulture) + "\n", ConsoleColor.DarkYellow);
                 _sistema.borrarDeudas(nuevo);
                 _sistema.actualizarMisDeudasConPedidoActualizado();
-                _sistema.actualizarMisPedidosConPedidoActualizado(); 
+                _sistema.actualizarMisPedidosConPedidoActualizado();
                 _vista.Mostrar("Deudas liquidadas.\nGracias.");
 
-            }else
-            {
-                _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\no Ve a gestion finanzas/Ver deudas pendientes Totales por cliente\nPara ver quienes tienen deudas pendientes.\nGracias\n",ConsoleColor.Red);
             }
-             
+            else
+            {
+                _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\no Ve a gestion finanzas/Ver deudas pendientes Totales por cliente\nPara ver quienes tienen deudas pendientes.\nGracias\n", ConsoleColor.Red);
+            }
+
 
         }
-        //opcion liquidar deudas, Por pedido o todos los pedidos
-
-
-        //Añadir en el gestro un metodo que inicie cuando se inicia el progrma que si la fecha de hoy es mayor todos los pedidos,
-        // la deuda se guarda en un repositorio aparte para tener control a largo plazo.
-
 
     }
 
