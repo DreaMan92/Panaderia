@@ -107,8 +107,9 @@ namespace consola
         {
             _marcarPedidos = new Dictionary<string, Action>()
             {
-                {"Marcar un pedido como pagado",marcarPedidoPagado},
-                {"Marcar todos los pedidos como pagados",marcarAPagadoTodos}
+                {"Marcar un pedido del dia como pagado",marcarPedidoPagado},
+                {"Marcar todos los pedidos del dia como pagados",marcarAPagadoTodos},
+                {"Volver atras",volverAtras}
             };
             var menuMarcar = _marcarPedidos.Keys.ToList<String>();
             try
@@ -152,7 +153,8 @@ namespace consola
             _validarPedidos = new Dictionary<string, Action>()
             {
                 {"Validar un pedido para el dia siguiente",cambiarFechaPedido},
-                {"Validar todos los pedidos para el dia siguiente",cambiarFechasPedidos}
+                {"Validar todos los pedidos para el dia siguiente",cambiarFechasPedidos},
+                {"Volver atras",volverAtras}
             };
             var menuValidar = _validarPedidos.Keys.ToList<String>();
             try
@@ -355,7 +357,8 @@ namespace consola
                 {"Ver datos de clientes",verDatosPorCliente},
                 {"Ver clientes con precio del pedido diario",verDeudasDiariasPorCliente},
                 {"Ver clientes con deudas pendientes",verTotalDeudasPorCliente},
-                {"Ver pedidos por cliente",verPedidosPorClientes}
+                {"Ver pedidos por cliente",verPedidosPorClientes},
+                {"Volver atras",volverAtras}
             };
             var menuClientes2 = _verClientes.Keys.ToList<String>();
             try
@@ -442,7 +445,8 @@ namespace consola
             {
                 {"Liquidar deudas por cliente",liquidarDeudasPorCliente},
                 {"Ver deudas diarias por cliente",verDeudasDiariasPorCliente},
-                {"Ver deudas pendientes Totales por cliente",verTotalDeudasPorCliente}
+                {"Ver deudas pendientes Totales por cliente",verTotalDeudasPorCliente},
+                {"Volver atras",volverAtras}
               
             };
             var menuFinanzas = _gestionFinanzas.Keys.ToList<String>();
@@ -483,7 +487,7 @@ namespace consola
 
             }else
             {
-                _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\nPara ver quienes tienen deudas pendientes.\nGracias\n",ConsoleColor.Red);
+                _vista.Mostrar("\nEste cliente no tiene deudas pendientes\nVe a gestion de clientes/ver clientes/ver clientes con deudas pendientes,\no Ve a gestion finanzas/Ver deudas pendientes Totales por cliente\nPara ver quienes tienen deudas pendientes.\nGracias\n",ConsoleColor.Red);
             }
              
 
