@@ -188,13 +188,13 @@ namespace consola
                 var dniCli = _vista.TryObtenerDatoDeTipo<string>("Introduzca dni");
                 if (_sistema.misClientes.Find(cliente => dniCli.Equals(cliente.dni)) == null)
                 {
-                    _vista.Mostrar("El dni no figura en el sistema\nPorfavor pruebe denuevo\nSi no esta registrado el dni, registre a nuevo cliente.");
+                    _vista.Mostrar("\nEl dni no figura en el sistema\nPorfavor pruebe denuevo\nSi no esta registrado el dni, registre a nuevo cliente.",ConsoleColor.Red);
                 }
                 else
                 {
                     if (_sistema.clienteTienePedido(dniCli))
                     {
-                        _vista.Mostrar("Ya hay un pedido registrado con este dni.\nSi quiere modificarlo acceda a cambiar pedido.");
+                        _vista.Mostrar("\nYa hay un pedido registrado con este dni.\nSi quiere modificarlo acceda a cambiar pedido.",ConsoleColor.Red);
                     }
                     else
                     {
@@ -211,7 +211,7 @@ namespace consola
                                 cantidad = _vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                                 panParaLista.Add(panNuevo, cantidad);
                             }
-                            catch { _vista.Mostrar("\nYa se ha introducido datos para este tipo de pan\n"); }
+                            catch { _vista.Mostrar("\nYa se ha introducido datos para este tipo de pan\n",ConsoleColor.Red); }
                             fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
                             if (fuera.Equals("s", StringComparison.InvariantCultureIgnoreCase))
                                 break;
@@ -255,7 +255,7 @@ namespace consola
                         cantidad = _vista.TryObtenerDatoDeTipo<int>("Introduzca cantidad de unidades del pan seleccionado");
                         panParaLista.Add(panNuevo, cantidad);
                     }
-                    catch { _vista.Mostrar("\nYa se ha introducido datos para este tipo de pan\n"); }
+                    catch { _vista.Mostrar("\nYa se ha introducido datos para este tipo de pan\n",ConsoleColor.Red); }
                     fuera = _vista.TryObtenerDatoDeTipo<string>("Has terminado?? ( S/N )");
                     if (fuera.Equals("s", StringComparison.InvariantCultureIgnoreCase))
                         break;
@@ -332,7 +332,7 @@ namespace consola
             catch { return; }
             finally
             {
-                _vista.Mostrar("Nuevo Cliente añadido.\nYa puede hacer su pedido.\n\n");
+                _vista.Mostrar("Nuevo Cliente añadido.\nYa puede hacer su pedido.\n\n",ConsoleColor.DarkYellow);
             }
         }
         public void borrarCliente()
@@ -356,7 +356,7 @@ namespace consola
             try
             {
                 _vista.LimpiarPantalla();
-                var key = _vista.TryObtenerElementoDeLista("Clientes registrados", menuClientes2, "Selecciona una cliente ");
+                var key = _vista.TryObtenerElementoDeLista("Clientes registrados", menuClientes2, "Selecciona una opción");
                 _vista.Mostrar("");
                 _verClientes[key].Invoke();
 
