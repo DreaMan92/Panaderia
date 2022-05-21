@@ -88,7 +88,7 @@ namespace modelos
             this.tipoPedido = tipoPedido;
         }
         public override string ToString() =>
-       $"Pedido: ({tipoPedido})\n\nDNI del cliente: {dniCliente} - Para el dia: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
+       $"----------------------------------------------------\nPedido: ({tipoPedido})\n\nDNI del cliente: {dniCliente} - Para el dia: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
 
         public string stringParaVerCliente() =>
         $"Para el dia: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Estado del pedido: {estado}";

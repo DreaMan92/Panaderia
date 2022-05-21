@@ -232,3 +232,28 @@
 
 ## Problemas
 ---
+> Durante el desarrollo de este programa me ha ido tocado resolver diferentes problemas para lograr un correcto funcionamiento del mismo:
+
+<br>
+
++ >Para guardar un pedido nuevo no ha sido nada sencillo:
+   + Primero guardar la lista de panes y sus cantidades, para ello he utilizado un Diccionario, un bucle y luego claro la transformación del diccionario a una lista que pudiera luego tratar para guardar en un CSV exclusivo de este tipo de Objeto (PanesPedido).
+   + Luego, después de tener el programa listo, he decidido añadir algo que me parecía fundamental, de lo que no me di cuenta hasta haberlo terminado. Con esto me refiero a hacer dos tipos de pedidos: (Habitual y Ocasional).
+   + Finalmente tratar toda esta información, como ya he dicho, con dos tipos de Objetos (Pedido y PanesPedido) y con sus respectivos Repositorios. Luego el programa se encarga de ordenar el puzzle y mostrar la información de varias formas diferentes.
+
+<br>
+
++ >Luego quiero resaltar una función que he implementado. Ha sido más que un problema, una forma de darle sentido a mi programa. Este, en mi opinión, no es un programa cien por cien completo, aun así me siento orgulloso de haber improvisado y lograr algo así. Me estoy refiriendo al proceso automático que cada día que se inicia el programa este comprueba todos los pedidos y en función de si son Habituales u Ocasionales los trata. Con él me aseguro de mantener siempre mis cuentas al día y bien almacenadas, lo que me lleva a la siguiente resolución de problemas.
++ >La última parte mi programa ha sido programar el funcionamiento de deudas. A pesar de ser el objetivo principal del programa, yo me centre en hacer funcionar la gestión de pedidos y clientes para luego empezar con las finanzas. Al igual que con el resto de información, resolví mi problema, creando un modelo (Objeto Deudas) así como sus repositorios y métodos de captura de información. Aquí se guarda un registro del dinero que se le debe al panadero.
+
+<br>
+
+## Conclusiones
+>En general me ha sido más sencillo realizar este programa debido a la práctica con los trabajos anteriores, de ahí que también me haya complicado un poco más en su desarrollo.   
+>Quiero resaltar que en este he añadido ciertas cosas que no conocía como:
++ La utilización de números random de identificación (Guid).
++ Crear un constructor en tu clase vista para que así el programa entienda que estamos en Europa y reconozca el símbolo del euro.
++ También resaltar que he usado el Objeto Decimal en vez de un double o un float. Por un tiempo me volví loco intentando parsear de string a Decimal. Luego comprendí que se trataba de la necesidad de incluir diferentes aspectos. Él parseo si, pero también algo relacionado con la cultura, para que cuando se escribiera en el CSV el número Decimal, la separación de los decimales, en vez de ir con una coma, fueran con punto.
+> Para terminar decir, que el programa podría continuar incluyendo, como ya he dicho, funciones de registro de gastos como (luz, gasolina, proveedores), para ser una aplicación profesional.   
+> También pienso que nunca haría una aplicación de consola si se me pidiera digitalizar un negocio. En tal caso primero haría una aplicación móvil y si no cuanto menos una de escritorio.
+

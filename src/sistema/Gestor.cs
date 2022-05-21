@@ -61,14 +61,15 @@ namespace sistema
             RepoClientes.guardar(misClientes);
         }
 
-        public bool clienteTienePedido(string dni)
+        public bool clienteTienePedidoHabitual(string dni)
         {
             bool respuesta = false;
             foreach (Pedido i in misPedidos)
             {
-                if (i.dniCliente.Equals(dni))
+                if (i.dniCliente.Equals(dni)&&i.tipoPedido==tipoDePedido.Habitual)
                 {
                     respuesta = true;
+                    break;
                 }
             }
             return respuesta;
@@ -82,6 +83,9 @@ namespace sistema
 
         public Pedido pedidoDeCliente(Cliente uno) =>
             misPedidos.Find(pedido => uno.dni.Equals(pedido.dniCliente));
+        
+        public List<Pedido> pedidosDeCliente(Cliente uno)=>
+        misPedidos.FindAll(pedido => uno.dni.Equals(pedido.dniCliente));
 
 
         // -------Gestion de Pedidos ---------------------
@@ -179,8 +183,30 @@ namespace sistema
         {
             foreach (Pedido i in misPedidos)
             {
-                if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pendiente))
+                if (i.tipoPedido == tipoDePedido.Habitual)
                 {
+                    if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pendiente))
+                    {
+                        Deuda nueva = new Deuda
+                        (
+                            dniCliente: i.dniCliente,
+                            fecha: i.fecha,
+                            importe: i.precioPedido
+                        );
+                        misDeudas.Add(nueva);
+                        i.estado = estadoPedido.pagado;
+                    }
+                    else
+                    if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pagado))
+                    {
+                        i.fecha = undiaMas(i.fecha);
+                        i.estado = estadoPedido.pendiente;
+                    }
+                }
+                else
+                {
+                    if((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pendiente))
+                    {
                     Deuda nueva = new Deuda
                     (
                         dniCliente: i.dniCliente,
@@ -188,15 +214,13 @@ namespace sistema
                         importe: i.precioPedido
                     );
                     misDeudas.Add(nueva);
-                    i.estado = estadoPedido.pagado;
+                    borrarPedido(i);
+                    }else
+                    if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pagado))
+                    {
+                     borrarPedido(i);
+                    }
                 }
-                else
-                if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pagado))
-                {
-                    i.fecha = undiaMas(i.fecha);
-                    i.estado = estadoPedido.pendiente;
-                }
-
             }
             RepoDeudas.guardar(misDeudas);
             RepoPedidos.guardar(misPedidos);
