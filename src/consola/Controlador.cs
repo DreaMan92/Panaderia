@@ -220,13 +220,15 @@ namespace consola
                         var fecha = _sistema.undiaMas(DateTime.Today);
                         var precio = _sistema.calcularPrecioPedido(panParaLista);
                         var estado = estadoPedido.pendiente;
+                        var tipoPedido = tipoDePedido.Habitual;
                         Pedido nuevo = new Pedido
                         (
                             ID: ID,
                             dniCliente: dniCli,
                             fecha: fecha.Date,
                             precioPedido: precio,
-                            estado: estado
+                            estado: estado,
+                            tipoPedido: tipoPedido
                         );
                         _sistema.nuevoPedido(nuevo, panParaLista);
                         _vista.Mostrar("\n\nNuevo pedido registrado.\n", ConsoleColor.DarkYellow);
@@ -264,13 +266,15 @@ namespace consola
                 var fecha = _sistema.undiaMas(DateTime.Today);
                 var precio = _sistema.calcularPrecioPedido(panParaLista);
                 var estado = estadoPedido.pendiente;
+                var tipoPedido= tipoDePedido.Habitual;
                 Pedido otro = new Pedido
                     (
                         ID: ID,
                         dniCliente: nuevo.dniCliente,
                         fecha: fecha.Date,
                         precioPedido: precio,
-                        estado: estado
+                        estado: estado,
+                        tipoPedido: tipoPedido
                     );
 
                 _sistema.nuevoPedido(otro, panParaLista);
@@ -314,20 +318,30 @@ namespace consola
         {
             try
             {
+                while(true){
                 var nombre = _vista.TryObtenerDatoDeTipo<string>("Nombre del cliente");
                 var apellido = _vista.TryObtenerDatoDeTipo<string>("Apellido del cliente");
                 var dni = _vista.TryObtenerDatoDeTipo<string>("DNI del cliente");
                 var telefono = _vista.TryObtenerDatoDeTipo<string>("Telefono del cliente");
                 var pueblo = _vista.TryObtenerDatoDeTipo<string>("Nombre del pueblo");
-                Cliente nuevo = new Cliente
+                if(nombre==null||apellido==null||dni==null||telefono==null||pueblo==null)
+                {
+                    _vista.Mostrar("No puedes dehar ningun campo sin rellenar",ConsoleColor.Red);
+                }else
+                {
+                    Cliente nuevo = new Cliente
                 (
                     nombre: nombre,
                     apellido: apellido,
                     dni: dni,
                     telefono: telefono,
                     pueblo: pueblo
-                );
-                _sistema.nuevoCliente(nuevo);
+                );   
+                    _sistema.nuevoCliente(nuevo);                 
+                    break;
+                }
+                }    
+                
             }
             catch { return; }
             finally

@@ -59,6 +59,12 @@ namespace modelos
         pagado,
         pendiente
     }
+    public enum tipoDePedido
+    {
+        Ocasional,
+        Habitual
+
+    }
 
     public class Pedido
     {
@@ -67,20 +73,22 @@ namespace modelos
         public DateTime fecha { get; set; }
         public Decimal precioPedido { get; set; }
         public estadoPedido estado { get; set; }
+        public tipoDePedido tipoPedido { get; set;}
         public List<PanesPedido> listaDePan { get; set; } = new();
 
         public Pedido() { }
 
-        public Pedido(Guid ID, string dniCliente, DateTime fecha, Decimal precioPedido, estadoPedido estado)
+        public Pedido(Guid ID, string dniCliente, DateTime fecha, Decimal precioPedido, estadoPedido estado, tipoDePedido tipoPedido)
         {
             this.ID = ID;
             this.dniCliente = dniCliente;
             this.fecha = fecha;
             this.precioPedido = Math.Round(precioPedido, 2);
             this.estado = estado;
+            this.tipoPedido = tipoPedido;
         }
         public override string ToString() =>
-       $"Pedido:\n\nDNI del cliente: {dniCliente} - Para el dia: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
+       $"Pedido: ({tipoPedido})\n\nDNI del cliente: {dniCliente} - Para el dia: {fecha.ToShortDateString()} \nTotal del pedido: {precioPedido} \u20AC - Estado del pedido: {estado}\n";
 
         public string stringParaVerCliente() =>
         $"Para el dia: {fecha.ToShortDateString()} \nTotal del pedido {precioPedido} \u20AC Estado del pedido: {estado}";
