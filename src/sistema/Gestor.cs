@@ -54,6 +54,7 @@ namespace sistema
         {
             misClientes.Add(c);
             RepoClientes.guardar(misClientes);
+
         }
         public void borrarCliente(Cliente c)
         {
@@ -159,6 +160,7 @@ namespace sistema
                 misPanesPorPedido.Add(i);
             }
             RepoPanPedido.guardar(misPanesPorPedido);
+            asignarPanPedidoAPedido();
         }
         public void asignarPanPedidoAPedido()
         {
@@ -181,6 +183,7 @@ namespace sistema
 
         public void actualizarAlDia()
         {
+            try{
             foreach (Pedido i in misPedidos)
             {
                 if (i.tipoPedido == tipoDePedido.Habitual)
@@ -194,6 +197,7 @@ namespace sistema
                             importe: i.precioPedido
                         );
                         misDeudas.Add(nueva);
+                        RepoDeudas.guardar(misDeudas);
                         i.estado = estadoPedido.pagado;
                     }
                     else
@@ -203,7 +207,7 @@ namespace sistema
                         i.estado = estadoPedido.pendiente;
                     }
                 }
-                else
+                else if (i.tipoPedido == tipoDePedido.Ocasional)
                 {
                     if((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pendiente))
                     {
@@ -214,6 +218,7 @@ namespace sistema
                         importe: i.precioPedido
                     );
                     misDeudas.Add(nueva);
+                    RepoDeudas.guardar(misDeudas);
                     borrarPedido(i);
                     }else
                     if ((i.fecha.CompareTo(DateTime.Today) == 0) && (i.estado == estadoPedido.pagado))
@@ -222,8 +227,10 @@ namespace sistema
                     }
                 }
             }
-            RepoDeudas.guardar(misDeudas);
             RepoPedidos.guardar(misPedidos);
+            }catch(System.InvalidOperationException e){
+                Console.WriteLine(e.Message.ToString());
+            }
 
         }
 

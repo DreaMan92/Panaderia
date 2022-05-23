@@ -290,6 +290,7 @@ namespace consola
         {
             try
             {
+  
                 Pedido nuevo = _vista.TryObtenerElementoDeLista<Pedido>("Lista de Pedidos", _sistema.misPedidos, "Selecciona un pedido que quieras cambiar");
                 Dictionary<Pan, int> panParaLista = new Dictionary<Pan, int>();
                 Pan panNuevo;

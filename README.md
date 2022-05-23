@@ -254,6 +254,8 @@
 + La utilización de números random de identificación (Guid).
 + Crear un constructor en tu clase vista para que así el programa entienda que estamos en Europa y reconozca el símbolo del euro.
 + También resaltar que he usado el Objeto Decimal en vez de un double o un float. Por un tiempo me volví loco intentando parsear de string a Decimal. Luego comprendí que se trataba de la necesidad de incluir diferentes aspectos. Él parseo si, pero también algo relacionado con la cultura, para que cuando se escribiera en el CSV el número Decimal, la separación de los decimales, en vez de ir con una coma, fueran con punto.
+> Tambien podría haber añadido mas funciones como:
++ Cuando alguien quiere cambiar un pedido Habitual preguntarle si queire mantener la lista de panes.
 > Para terminar decir, que el programa podría continuar incluyendo, como ya he dicho, funciones de registro de gastos como (luz, gasolina, proveedores), para ser una aplicación profesional.   
 > También pienso que nunca haría una aplicación de consola si se me pidiera digitalizar un negocio. En tal caso primero haría una aplicación móvil y si no cuanto menos una de escritorio.
 
