@@ -230,6 +230,32 @@
 
 <br>
 
+<br>
+<center>
+
+### Prueba de actualización automática de pedidos y deudas - Antes
+---
+
+<br>
+
+![](Imagenes/AntesDeEjecutarYActualizar.png) 
+</center>
+
+<br>
+
+<br>
+<center>
+
+### Prueba de actualización automática de pedidos y deudas - Después
+---
+
+<br>
+
+![](Imagenes/DespuesDeEjecutarYActualizar.png) 
+</center>
+
+<br>
+
 ## Problemas
 ---
 > Durante el desarrollo de este programa me ha ido tocado resolver diferentes problemas para lograr un correcto funcionamiento del mismo:
@@ -249,13 +275,17 @@
 <br>
 
 ## Conclusiones
->En general me ha sido más sencillo realizar este programa debido a la práctica con los trabajos anteriores, de ahí que también me haya complicado un poco más en su desarrollo.   
->Quiero resaltar que en este he añadido ciertas cosas que no conocía como:
+>En general me ha sido más sencillo realizar este programa debido a la práctica con los trabajos anteriores, de ahí que también me haya complicado un poco más en su desarrollo. 
+
+>Quiero resaltar que al realizar este programa he añadido ciertas cosas que no conocía como:
 + La utilización de números random de identificación (Guid).
 + Crear un constructor en tu clase vista para que así el programa entienda que estamos en Europa y reconozca el símbolo del euro.
 + También resaltar que he usado el Objeto Decimal en vez de un double o un float. Por un tiempo me volví loco intentando parsear de string a Decimal. Luego comprendí que se trataba de la necesidad de incluir diferentes aspectos. Él parseo si, pero también algo relacionado con la cultura, para que cuando se escribiera en el CSV el número Decimal, la separación de los decimales, en vez de ir con una coma, fueran con punto.
-> Tambien podría haber añadido mas funciones como:
-+ Cuando alguien quiere cambiar un pedido Habitual preguntarle si queire mantener la lista de panes.
 > Para terminar decir, que el programa podría continuar incluyendo, como ya he dicho, funciones de registro de gastos como (luz, gasolina, proveedores), para ser una aplicación profesional.   
-> También pienso que nunca haría una aplicación de consola si se me pidiera digitalizar un negocio. En tal caso primero haría una aplicación móvil y si no cuanto menos una de escritorio.
+> También pienso que nunca haría una aplicación de consola si se me pidiera digitalizar un negocio. En tal caso primero haría una aplicación móvil y si no cuanto menos una de escritorio.   
+
+<br>
+
+### realizado por:
+## Gonzalo Alvarez Pablos
 

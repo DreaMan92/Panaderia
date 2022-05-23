@@ -71,11 +71,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\consola.csproj",
+      "projectUniqueName": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\consola.csproj",
       "projectName": "consola",
-      "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\consola.csproj",
+      "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\consola.csproj",
       "packagesPath": "C:\\Users\\guly_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\obj\\",
+      "outputPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\consola\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\guly_\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -92,14 +92,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
-              "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj"
+            "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
+              "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\datos\\datos.csproj"
             },
-            "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
-              "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
+            "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+              "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
             },
-            "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj": {
-              "projectPath": "C:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj"
+            "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj": {
+              "projectPath": "c:\\Users\\guly_\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj"
             }
           }
         }
