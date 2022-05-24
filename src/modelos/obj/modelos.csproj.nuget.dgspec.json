@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {}
+    "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+    "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
+        "projectUniqueName": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
         "projectName": "modelos",
-        "projectPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
+        "projectPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj",
         "packagesPath": "C:\\Users\\1daw3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\obj\\",
+        "outputPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\1daw3\\AppData\\Roaming\\NuGet\\NuGet.Config",

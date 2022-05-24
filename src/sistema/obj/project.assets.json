@@ -51,11 +51,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
+      "projectUniqueName": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
       "projectName": "sistema",
-      "projectPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
+      "projectPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\sistema.csproj",
       "packagesPath": "C:\\Users\\1daw3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\obj\\",
+      "outputPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\sistema\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\1daw3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,11 +72,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
-              "projectPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\datos\\datos.csproj"
+            "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\datos\\datos.csproj": {
+              "projectPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\datos\\datos.csproj"
             },
-            "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
-              "projectPath": "C:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
+            "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj": {
+              "projectPath": "c:\\Users\\1daw3\\Desktop\\Panaderia\\src\\modelos\\modelos.csproj"
             }
           }
         }
