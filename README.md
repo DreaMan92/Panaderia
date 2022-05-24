@@ -30,7 +30,7 @@
 
 > Cada una, como su nombre bien indica, atiende a dichas responsabilidades. Además, he querido agregar un funcionamiento automático. Este, comprueba cada día inicia la aplicación, que se renuevan los pedidos para el día siguiente. Para hacerlo comprueba el estado del pedido, si  sin que se pie a no ser que se modifiquen mediante el uso del programa.  
 
-> Considero que el panadero haría uso de la aplicación a diario, por eso esta función es muy útil. Sin embargo, no he considerado que la entrega pueda fallar o que el propio panadero se ponga enfermo. 
+> Considero que el panadero haría uso de la aplicación a diario, por eso esta función es muy útil. Sin embargo, no he considerado que la entrega pueda fallar o que el propio panadero se ponga enfermo. Si el panadero no inicia la aplicación algún día, se perdería información, pero ahora mismo todos los datos son de prueba y de relleno. De ser realidad, se automatizaría el proceso de ejecutar el programa o incluso se podría externalizar la gestión de datos implementando una base de datos, que incluya un trigger que a diario se actualice la base de datos.
 
 <br>
 
@@ -76,7 +76,7 @@
 
 <br>
 
-![](Imagenes/) 
+![](Imagenes/Diagrama%20de%20actividad.jpg) 
 </center>
 
 
